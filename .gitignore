@@ -2,3 +2,5 @@
 src/cache
 src/includes/config.php
 src/includes/error.log
+src/install.php
+src/install.sql

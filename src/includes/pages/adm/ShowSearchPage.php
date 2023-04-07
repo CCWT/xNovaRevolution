@@ -158,7 +158,7 @@ function ShowSearchPage()
 			$Table = "planets";
 			$TableUsers = "2";
 			$NameLang = $LNG['se_search_planets'];
-			$SpecifyItems = "'id','name','id_owner','last_update','galaxy','system','planet','id_luna'";
+			$SpecifyItems = "id,name,id_owner,last_update,galaxy,`system`,planet,id_luna";
 
 			if ($SearchFile == "planet") {
 				$SpecialSpecify = "AND planet_type = '1'";
