@@ -115,9 +115,9 @@
 			{if $slots_available}
 			<tr style="height:20px;"><td colspan="4"><input type="submit" value="{$fl_continue}"></td>
 			{/if}
-    	</table>	
+    	</table>
         </form>
-		
+
 		<br>
 		<table style="min-width:519px;width:519px;">
 		<tr><th colspan="3">{$fl_bonus}</th></tr>

@@ -62,10 +62,10 @@
 	<tr>
 		<td>{$pl_fightwon}</td><td>{pretty_number($fightwon)} {if $totalfight}({round($fightwon / $totalfight * 100, 2)}%){/if}</td>
 	</tr>
-	<tr>	
+	<tr>
 		<td>{$pl_fightlose}</td><td>{pretty_number($fightlose)} {if $totalfight}({round($fightlose / $totalfight * 100, 2)}%){/if}</td>
 	</tr>
-	<tr>	
+	<tr>
 		<td>{$pl_fightdraw}</td><td>{pretty_number($fightdraw)} {if $totalfight}({round($fightdraw / $totalfight * 100, 2)}%){/if}</td>
 	</tr>
 	<tr>

@@ -1,12 +1,12 @@
 <?php
 
 /**
- _  \_/ |\ | /¯¯\ \  / /\    |¯¯) |_¯ \  / /¯¯\ |  |   |´¯|¯` | /¯¯\ |\ |5
- ¯  /¯\ | \| \__/  \/ /--\   |¯¯\ |__  \/  \__/ |__ \_/   |   | \__/ | \|Core.
- * @author: Copyright (C) 2011 by Brayan Narvaez (Prinick) developer of xNova Revolution
- * @link: http://www.xnovarevolution.con.ar
- *
- * Please do not remove the credits
+_  \_/ |\ | /ï¿½ï¿½\ \  / /\    |ï¿½ï¿½) |_ï¿½ \  / /ï¿½ï¿½\ |  |   |ï¿½ï¿½|ï¿½` | /ï¿½ï¿½\ |\ |5
+ï¿½  /ï¿½\ | \| \__/  \/ /--\   |ï¿½ï¿½\ |__  \/  \__/ |__ \_/   |   | \__/ | \|Core.
+* @author: Copyright (C) 2011 by Brayan Narvaez (Prinick) developer of xNova Revolution
+* @link: http://www.xnovarevolution.con.ar
+*
+* Please do not remove the credits
 */
 
 function ShowCreditsPage()
@@ -17,7 +17,8 @@ function ShowCreditsPage()
 	$PlanetRess->CalcResource();
 	$PlanetRess->SavePlanetToDB();
 
-	$template	= new template();
+	$template = new template();
 	$template->show("creditos_overview.tpl");
 }
 ?>
+

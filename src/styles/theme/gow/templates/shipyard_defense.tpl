@@ -31,32 +31,32 @@
 	<br>
 	{/if}
 	<form action="" method="POST">
-    <table align="top" width="530">	
+    <table align="top" width="530">
 		{foreach name=DefenseList item=DefenseListRow from=$DefenseList}
 		<tr>
 		<th colspan="4"><a href="javascript:OpenPopup('game.php?page=infos&gid={$DefenseListRow.id}', '', 640, 510);"><a href="javascript:OpenPopup('game.php?page=infos&gid={$DefenseListRow.id}', '', 640, 510);">{$DefenseListRow.name}</a>{if $DefenseListRow.Available != 0} ({$bd_available} {$DefenseListRow.Available}){/if}</th></tr>
 		<tr>
-			      
+
 				  <td class="l" style="background-image:url({$dpath}img/invisible.png);border:none;">
                                  <a href="javascript:OpenPopup('game.php?page=infos&gid={$DefenseListRow.id}', '', 610, 510)" onmouseover="return overlib('<center><font size=1 color=white><b>{$DefenseListRow.descriptions}<b></b></font></a></center>', RIGHT, WIDTH, 150);" onmouseout="return nd();">
                                          <img src="{$dpath}gebaeude/{$DefenseListRow.id}.png" width="120" height="120">
                                  </a>
                          </td>
-			
- 
-			
+
+
+
 			<td class="l">
-									{if $NotBuilding && $DefenseListRow.IsAvailable}<input type="text" name="fmenge[{$DefenseListRow.id}]" id="input_{$DefenseListRow.id}" size="{$maxlength}" maxlength="{$maxlength}" value="0" tabindex="{$smarty.foreach.FleetList.iteration}">							
+									{if $NotBuilding && $DefenseListRow.IsAvailable}<input type="text" name="fmenge[{$DefenseListRow.id}]" id="input_{$DefenseListRow.id}" size="{$maxlength}" maxlength="{$maxlength}" value="0" tabindex="{$smarty.foreach.FleetList.iteration}">
 						<input type="button" value="Max" onclick="$('#input_{$DefenseListRow.id}').val('{$DefenseListRow.GetMaxAmount}')">
 						<!--<td><a href="javascript:maxcount({$DefenseListRow.id});">Max</a></td>--><!--TEST LINK-->
 						{/if}<br><br>
 				<font color="orange">{$fgf_time}</font>
 				{$DefenseListRow.time}<br>
-				
+
 			</td>
-									
-			                     
-									
+
+
+
  <td class="l">
   {$DefenseListRow.price}
   </td>

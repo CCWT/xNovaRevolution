@@ -10,10 +10,10 @@
    	<td width="50%"><a href="?page=accounteditor&amp;edit=researchs"><img src="./styles/images/Adm/arrowright.png" width="16" height="10"> {$ad_editor_researchs}</a></td>
 </tr><tr>
    	<td width="50%"><a href="?page=accounteditor&amp;edit=officiers"><img src="./styles/images/Adm/arrowright.png" width="16" height="10"> {$ad_editor_officiers}</a></td>
-   	<td width="50%"><a href="?page=accounteditor&amp;edit=resources"><img src="./styles/images/Adm/arrowright.png" width="16" height="10"> {$ad_editor_resources}</a></td> 
+   	<td width="50%"><a href="?page=accounteditor&amp;edit=resources"><img src="./styles/images/Adm/arrowright.png" width="16" height="10"> {$ad_editor_resources}</a></td>
 </tr><tr>
 	<td width="50%"><a href="?page=accounteditor&amp;edit=planets"><img src="./styles/images/Adm/arrowright.png" width="16" height="10"> {$ad_editor_planets}</a></td>
-   	<td width="50%"><a href="?page=accounteditor&amp;edit=alliances"><img src="./styles/images/Adm/arrowright.png" width="16" height="10"> {$ad_editor_alliances}</a></td> 
+   	<td width="50%"><a href="?page=accounteditor&amp;edit=alliances"><img src="./styles/images/Adm/arrowright.png" width="16" height="10"> {$ad_editor_alliances}</a></td>
 </tr>
 <tr>
 	<td width="50%" colspan="2"><a href="?page=accounteditor&amp;edit=personal"><img src="./styles/images/Adm/arrowright.png" width="16" height="10"> {$ad_editor_personal}</a></td>

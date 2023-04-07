@@ -42,14 +42,14 @@
 			<optgroup label="XNova SVN">
 				<option label="XNova SVN v2.0" value="xsvn20">XNova SVN v2.0</option>
 				<option label="XNova SVN v2.1" value="xsvn21">XNova SVN v2.1</option>
-			</optgroup><!-- 
+			</optgroup><!--
 			<optgroup label="Spacebeginners">
 				<option label="Spacebeginners v3" value="sb3">Spacebeginners v3</option>
 				<option label="Spacebeginners v4" value="sb4">Spacebeginners v4</option>
 			</optgroup> -->
         </select>
     </td>
-</tr>        
+</tr>
 <tr>
 	<td colspan="2"><input type="submit" value="{$convert_submit}"></td>
 </tr>

@@ -12,14 +12,14 @@
         <td style="width:10%">{$Metal}</td>
         <td style="width:10%">{$Crystal}</td>
         <td style="width:10%">{$Deuterium}</td>
-        <td style="width:10%">{$Norio}</td>		
+        <td style="width:10%">{$Norio}</td>
         <td style="width:10%">{$Energy}</td>
     </tr><tr style="height: 22px">
         <td>{$rs_basic_income}</td>
         <td>{$metal_basic_income}</td>
         <td>{$crystal_basic_income}</td>
         <td>{$deuterium_basic_income}</td>
-        <td>{$norio_basic_income}</td>		
+        <td>{$norio_basic_income}</td>
         <td>{$energy_basic_income}</td>
     </tr>
     {foreach item=CurrPlanetInfo from=$CurrPlanetList}
@@ -28,7 +28,7 @@
 		<td style="color:#ffffff">{$CurrPlanetInfo.metal_type}</td>
 		<td style="color:#ffffff">{$CurrPlanetInfo.crystal_type}</td>
 		<td style="color:#ffffff">{$CurrPlanetInfo.deuterium_type}</td>
-		<td style="color:#ffffff">{$CurrPlanetInfo.norio_type}</td>		
+		<td style="color:#ffffff">{$CurrPlanetInfo.norio_type}</td>
 		<td style="color:#ffffff">{$CurrPlanetInfo.energy_type}</td>
 		<td style="width:5%;">
 			{html_options name=$CurrPlanetInfo.name options=$option selected=$CurrPlanetInfo.optionsel}
@@ -40,7 +40,7 @@
         <td>{$bonus_metal}</td>
         <td>{$bonus_crystal}</td>
         <td>{$bonus_deuterium}</td>
-        <td>{$bonus_norio}</td>		
+        <td>{$bonus_norio}</td>
         <td>{$bonus_energy}</td>
         <td><input name="action" value="{$rs_calculate}" type="submit"></td>
     </tr><tr style="height:22px">
@@ -48,14 +48,14 @@
         <td>{$metalmax}</td>
         <td>{$crystalmax}</td>
         <td>{$deuteriummax}</td>
-        <td>{$noriomax}</td>		
+        <td>{$noriomax}</td>
         <td>-</td>
     </tr><tr style="height:22px">
         <td>{$rs_sum}:</td>
         <td>{$metal_total}</td>
         <td>{$crystal_total}</td>
         <td>{$deuterium_total}</td>
-        <td>{$norio_total}</td>		
+        <td>{$norio_total}</td>
         <td>{$energy_total}</td>
     </tr>
     <tr style="height:22px">
@@ -63,7 +63,7 @@
         <td>{$daily_metal}</td>
         <td>{$daily_crystal}</td>
         <td>{$daily_deuterium}</td>
-        <td>{$daily_norio}</td>		
+        <td>{$daily_norio}</td>
         <td>{$energy_total}</td>
     </tr style="height:22px">
     <tr>
@@ -71,7 +71,7 @@
         <td>{$weekly_metal}</td>
         <td>{$weekly_crystal}</td>
         <td>{$weekly_deuterium}</td>
-        <td>{$weekly_norio}</td>		
+        <td>{$weekly_norio}</td>
         <td>{$energy_total}</td>
     </tr>
     </tbody>

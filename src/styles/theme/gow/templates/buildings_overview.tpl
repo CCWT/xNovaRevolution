@@ -4,7 +4,7 @@
 <div id="content" class="content">
     <div id="buildlist" style="display:none;"></div>
 	<br>
-    <table align="top" width="530">	
+    <table align="top" width="530">
 		{foreach item=BuildInfoRow from=$BuildInfoList}
 		<tr>
 			<td rowspan="2" style="background-image:url({$dpath}img/invisible.png);border:none;">
@@ -31,7 +31,7 @@
 			</td>
 		</tr>
 		<tr>
-				<td colspan="2" style="margin-bottom:5px;">  
+				<td colspan="2" style="margin-bottom:5px;">
 				<table style="width:100%">
 					<tr>
 						<td class="transparent left">
@@ -45,7 +45,7 @@
 							<font color="orange"><b>{$fgf_time}</b></font><br>{$BuildInfoRow.time}
 						</td>
 					</tr>
-					<tr>		
+					<tr>
 						<td class="transparent left" style="width:68%">
 							{if $BuildInfoRow.EnergyNeed}
 							<font color="#0871a2"><b>{$bd_next_level}</b></font>&nbsp;
@@ -56,7 +56,7 @@
 							{/if}
 							&nbsp;
 						</td>
-					</tr>	
+					</tr>
 				</table>
 			</td>
 		</tr>

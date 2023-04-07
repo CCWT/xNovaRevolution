@@ -7,7 +7,7 @@
             <tr>
                 <th colspan="{$colspan}">{$iv_imperium_title}</th>
             </tr>
-           
+
 			<tr>
                 <td style="width:{100/$colspan}%;">{$iv_planet}</td>
 				{foreach item=PlanetsInfoRow from=$PlanetsList}
@@ -32,7 +32,7 @@
 					<td>{$PlanetsInfoRow.InfoList.field_current}/{$PlanetsInfoRow.InfoList.field_max}</td>
 				{/foreach}
 			</tr>
-		
+
             <tr>
 				<th colspan="{$colspan}">{$iv_resources}</th>
             </tr>

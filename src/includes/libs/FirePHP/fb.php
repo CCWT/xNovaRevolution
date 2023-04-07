@@ -1,7 +1,7 @@
 <?php
 
 /* ***** BEGIN LICENSE BLOCK *****
- *  
+ *
  * This file is part of FirePHP (http://www.firephp.org/).
  *
  * Software License Agreement (New BSD License)
@@ -42,7 +42,7 @@
  * @package     FirePHPCore
  */
 
-if(!class_exists('FirePHP')) {
+if (!class_exists('FirePHP')) {
     require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'FirePHP.class.php';
 }
 
@@ -59,9 +59,9 @@ if(!class_exists('FirePHP')) {
 function fb()
 {
     $instance = FirePHP::getInstance(true);
- 
+
     $args = func_get_args();
-    return call_user_func_array(array($instance,'fb'),$args);
+    return call_user_func_array(array($instance, 'fb'), $args);
 }
 
 
@@ -79,7 +79,7 @@ class FB
         $instance = FirePHP::getInstance(true);
         $instance->setEnabled($Enabled);
     }
- 
+
     /**
      * Check if logging is enabled
      *
@@ -90,8 +90,8 @@ class FB
     {
         $instance = FirePHP::getInstance(true);
         return $instance->getEnabled();
-    }  
- 
+    }
+
     /**
      * Specify a filter to be used when encoding an object
      *
@@ -104,10 +104,10 @@ class FB
      */
     public static function setObjectFilter($Class, $Filter)
     {
-      $instance = FirePHP::getInstance(true);
-      $instance->setObjectFilter($Class, $Filter);
+        $instance = FirePHP::getInstance(true);
+        $instance->setObjectFilter($Class, $Filter);
     }
- 
+
     /**
      * Set some options for the library
      *
@@ -145,7 +145,7 @@ class FB
     {
         $instance = FirePHP::getInstance(true);
         $args = func_get_args();
-        return call_user_func_array(array($instance,'fb'),$args);
+        return call_user_func_array(array($instance, 'fb'), $args);
     }
 
     /**
@@ -159,7 +159,7 @@ class FB
      * @param array $Options OPTIONAL Instructions on how to log the group
      * @return true
      */
-    public static function group($Name, $Options=null)
+    public static function group($Name, $Options = null)
     {
         $instance = FirePHP::getInstance(true);
         return $instance->group($Name, $Options);
@@ -185,7 +185,7 @@ class FB
      * @return true
      * @throws Exception
      */
-    public static function log($Object, $Label=null)
+    public static function log($Object, $Label = null)
     {
         return self::send($Object, $Label, FirePHP::LOG);
     }
@@ -199,7 +199,7 @@ class FB
      * @return true
      * @throws Exception
      */
-    public static function info($Object, $Label=null)
+    public static function info($Object, $Label = null)
     {
         return self::send($Object, $Label, FirePHP::INFO);
     }
@@ -213,7 +213,7 @@ class FB
      * @return true
      * @throws Exception
      */
-    public static function warn($Object, $Label=null)
+    public static function warn($Object, $Label = null)
     {
         return self::send($Object, $Label, FirePHP::WARN);
     }
@@ -227,7 +227,7 @@ class FB
      * @return true
      * @throws Exception
      */
-    public static function error($Object, $Label=null)
+    public static function error($Object, $Label = null)
     {
         return self::send($Object, $Label, FirePHP::ERROR);
     }

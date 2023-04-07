@@ -17,7 +17,8 @@ class FacebookApiException extends Exception
    *
    * @param Array $result the result from the API server
    */
-  public function __construct($result) {
+  public function __construct($result)
+  {
     $this->result = $result;
 
     $code = isset($result['error_code']) ? $result['error_code'] : 0;
@@ -43,7 +44,8 @@ class FacebookApiException extends Exception
    *
    * @returns Array the result from the API server
    */
-  public function getResult() {
+  public function getResult()
+  {
     return $this->result;
   }
 
@@ -53,7 +55,8 @@ class FacebookApiException extends Exception
    *
    * @return String
    */
-  public function getType() {
+  public function getType()
+  {
     if (isset($this->result['error'])) {
       $error = $this->result['error'];
       if (is_string($error)) {
@@ -74,7 +77,8 @@ class FacebookApiException extends Exception
    *
    * @returns String the string representation of the error
    */
-  public function __toString() {
+  public function __toString()
+  {
     $str = $this->getType() . ': ';
     if ($this->code != 0) {
       $str .= $this->code . ': ';
@@ -102,8 +106,8 @@ class Facebook
   public static $CURL_OPTS = array(
     CURLOPT_CONNECTTIMEOUT => 10,
     CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_TIMEOUT        => 60,
-    CURLOPT_USERAGENT      => 'facebook-php-2.0',
+    CURLOPT_TIMEOUT => 60,
+    CURLOPT_USERAGENT => 'facebook-php-2.0',
   );
 
   /**
@@ -119,10 +123,10 @@ class Facebook
    * Maps aliases to Facebook domains.
    */
   public static $DOMAIN_MAP = array(
-    'api'      => 'https://api.facebook.com/',
+    'api' => 'https://api.facebook.com/',
     'api_read' => 'https://api-read.facebook.com/',
-    'graph'    => 'https://graph.facebook.com/',
-    'www'      => 'https://www.facebook.com/',
+    'graph' => 'https://graph.facebook.com/',
+    'www' => 'https://www.facebook.com/',
   );
 
   /**
@@ -177,7 +181,8 @@ class Facebook
    *
    * @param Array $config the application configuration
    */
-  public function __construct($config) {
+  public function __construct($config)
+  {
     $this->setAppId($config['appId']);
     $this->setApiSecret($config['secret']);
     if (isset($config['cookie'])) {
@@ -196,7 +201,8 @@ class Facebook
    *
    * @param String $appId the Application ID
    */
-  public function setAppId($appId) {
+  public function setAppId($appId)
+  {
     $this->appId = $appId;
     return $this;
   }
@@ -206,7 +212,8 @@ class Facebook
    *
    * @return String the Application ID
    */
-  public function getAppId() {
+  public function getAppId()
+  {
     return $this->appId;
   }
 
@@ -215,7 +222,8 @@ class Facebook
    *
    * @param String $appId the API Secret
    */
-  public function setApiSecret($apiSecret) {
+  public function setApiSecret($apiSecret)
+  {
     $this->apiSecret = $apiSecret;
     return $this;
   }
@@ -225,7 +233,8 @@ class Facebook
    *
    * @return String the API Secret
    */
-  public function getApiSecret() {
+  public function getApiSecret()
+  {
     return $this->apiSecret;
   }
 
@@ -234,7 +243,8 @@ class Facebook
    *
    * @param Boolean $cookieSupport the Cookie Support status
    */
-  public function setCookieSupport($cookieSupport) {
+  public function setCookieSupport($cookieSupport)
+  {
     $this->cookieSupport = $cookieSupport;
     return $this;
   }
@@ -244,7 +254,8 @@ class Facebook
    *
    * @return Boolean the Cookie Support status
    */
-  public function useCookieSupport() {
+  public function useCookieSupport()
+  {
     return $this->cookieSupport;
   }
 
@@ -253,7 +264,8 @@ class Facebook
    *
    * @param String $domain the base domain
    */
-  public function setBaseDomain($domain) {
+  public function setBaseDomain($domain)
+  {
     $this->baseDomain = $domain;
     return $this;
   }
@@ -263,7 +275,8 @@ class Facebook
    *
    * @return String the base domain
    */
-  public function getBaseDomain() {
+  public function getBaseDomain()
+  {
     return $this->baseDomain;
   }
 
@@ -272,7 +285,8 @@ class Facebook
    *
    * @param String $domain the base domain
    */
-  public function setFileUploadSupport($fileUploadSupport) {
+  public function setFileUploadSupport($fileUploadSupport)
+  {
     $this->fileUploadSupport = $fileUploadSupport;
     return $this;
   }
@@ -282,7 +296,8 @@ class Facebook
    *
    * @return String the base domain
    */
-  public function useFileUploadSupport() {
+  public function useFileUploadSupport()
+  {
     return $this->fileUploadSupport;
   }
 
@@ -291,11 +306,13 @@ class Facebook
    *
    * @return String the base domain
    */
-  public function getSignedRequest() {
+  public function getSignedRequest()
+  {
     if (!$this->signedRequest) {
       if (isset($_REQUEST['signed_request'])) {
         $this->signedRequest = $this->parseSignedRequest(
-          $_REQUEST['signed_request']);
+          $_REQUEST['signed_request']
+        );
       }
     }
     return $this->signedRequest;
@@ -308,7 +325,8 @@ class Facebook
    * @param Boolean $write_cookie indicate if a cookie should be written. this
    * value is ignored if cookie support has been disabled.
    */
-  public function setSession($session=null, $write_cookie=true) {
+  public function setSession($session = null, $write_cookie = true)
+  {
     $session = $this->validateSessionObject($session);
     $this->sessionLoaded = true;
     $this->session = $session;
@@ -324,7 +342,8 @@ class Facebook
    *
    * @return Array the session
    */
-  public function getSession() {
+  public function getSession()
+  {
     if (!$this->sessionLoaded) {
       $session = null;
       $write_cookie = true;
@@ -340,8 +359,8 @@ class Facebook
       if (!$session && isset($_REQUEST['session'])) {
         $session = json_decode(
           get_magic_quotes_gpc()
-            ? stripslashes($_REQUEST['session'])
-            : $_REQUEST['session'],
+          ? stripslashes($_REQUEST['session'])
+          : $_REQUEST['session'],
           true
         );
         $session = $this->validateSessionObject($session);
@@ -352,12 +371,15 @@ class Facebook
         $cookieName = $this->getSessionCookieName();
         if (isset($_COOKIE[$cookieName])) {
           $session = array();
-          parse_str(trim(
-            get_magic_quotes_gpc()
+          parse_str(
+            trim(
+              get_magic_quotes_gpc()
               ? stripslashes($_COOKIE[$cookieName])
               : $_COOKIE[$cookieName],
-            '"'
-          ), $session);
+              '"'
+            ),
+            $session
+          );
           $session = $this->validateSessionObject($session);
           // write only if we need to delete a invalid session cookie
           $write_cookie = empty($session);
@@ -375,7 +397,8 @@ class Facebook
    *
    * @return String the UID if available
    */
-  public function getUser() {
+  public function getUser()
+  {
     $session = $this->getSession();
     return $session ? $session['uid'] : null;
   }
@@ -385,13 +408,14 @@ class Facebook
    *
    * @return String the access token
    */
-  public function getAccessToken() {
+  public function getAccessToken()
+  {
     $session = $this->getSession();
     // either user session signed, or app signed
     if ($session) {
       return $session['access_token'];
     } else {
-      return $this->getAppId() .'|'. $this->getApiSecret();
+      return $this->getAppId() . '|' . $this->getApiSecret();
     }
   }
 
@@ -409,21 +433,25 @@ class Facebook
    * @param Array $params provide custom parameters
    * @return String the URL for the login flow
    */
-  public function getLoginUrl($params=array()) {
+  public function getLoginUrl($params = array())
+  {
     $currentUrl = $this->getCurrentUrl();
     return $this->getUrl(
       'www',
       'login.php',
-      array_merge(array(
-        'api_key'         => $this->getAppId(),
-        'cancel_url'      => $currentUrl,
-        'display'         => 'page',
-        'fbconnect'       => 1,
-        'next'            => $currentUrl,
-        'return_session'  => 1,
-        'session_version' => 3,
-        'v'               => '1.0',
-      ), $params)
+      array_merge(
+        array(
+          'api_key' => $this->getAppId(),
+          'cancel_url' => $currentUrl,
+          'display' => 'page',
+          'fbconnect' => 1,
+          'next' => $currentUrl,
+          'return_session' => 1,
+          'session_version' => 3,
+          'v' => '1.0',
+        ),
+        $params
+      )
     );
   }
 
@@ -436,14 +464,18 @@ class Facebook
    * @param Array $params provide custom parameters
    * @return String the URL for the logout flow
    */
-  public function getLogoutUrl($params=array()) {
+  public function getLogoutUrl($params = array())
+  {
     return $this->getUrl(
       'www',
       'logout.php',
-      array_merge(array(
-        'next'         => $this->getCurrentUrl(),
-        'access_token' => $this->getAccessToken(),
-      ), $params)
+      array_merge(
+        array(
+          'next' => $this->getCurrentUrl(),
+          'access_token' => $this->getAccessToken(),
+        ),
+        $params
+      )
     );
   }
 
@@ -458,17 +490,21 @@ class Facebook
    * @param Array $params provide custom parameters
    * @return String the URL for the logout flow
    */
-  public function getLoginStatusUrl($params=array()) {
+  public function getLoginStatusUrl($params = array())
+  {
     return $this->getUrl(
       'www',
       'extern/login_status.php',
-      array_merge(array(
-        'api_key'         => $this->getAppId(),
-        'no_session'      => $this->getCurrentUrl(),
-        'no_user'         => $this->getCurrentUrl(),
-        'ok_session'      => $this->getCurrentUrl(),
-        'session_version' => 3,
-      ), $params)
+      array_merge(
+        array(
+          'api_key' => $this->getAppId(),
+          'no_session' => $this->getCurrentUrl(),
+          'no_user' => $this->getCurrentUrl(),
+          'ok_session' => $this->getCurrentUrl(),
+          'session_version' => 3,
+        ),
+        $params
+      )
     );
   }
 
@@ -478,7 +514,8 @@ class Facebook
    * @param Array $params the API call parameters
    * @return the decoded response
    */
-  public function api(/* polymorphic */) {
+  public function api( /* polymorphic */)
+  {
     $args = func_get_args();
     if (is_array($args[0])) {
       return $this->_restserver($args[0]);
@@ -494,7 +531,8 @@ class Facebook
    * @return the decoded response object
    * @throws FacebookApiException
    */
-  protected function _restserver($params) {
+  protected function _restserver($params)
+  {
     // generic application level parameters
     $params['api_key'] = $this->getAppId();
     $params['format'] = 'json-strings';
@@ -520,7 +558,8 @@ class Facebook
    * @return the decoded response object
    * @throws FacebookApiException
    */
-  protected function _graph($path, $method='GET', $params=array()) {
+  protected function _graph($path, $method = 'GET', $params = array())
+  {
     if (is_array($method) && empty($params)) {
       $params = $method;
       $method = 'GET';
@@ -555,7 +594,8 @@ class Facebook
    * @return the decoded response object
    * @throws FacebookApiException
    */
-  protected function _oauthRequest($url, $params) {
+  protected function _oauthRequest($url, $params)
+  {
     if (!isset($params['access_token'])) {
       $params['access_token'] = $this->getAccessToken();
     }
@@ -579,7 +619,8 @@ class Facebook
    * @param CurlHandler $ch optional initialized curl handle
    * @return String the response text
    */
-  protected function makeRequest($url, $params, $ch=null) {
+  protected function makeRequest($url, $params, $ch = null)
+  {
     if (!$ch) {
       $ch = curl_init();
     }
@@ -591,7 +632,7 @@ class Facebook
       $opts[CURLOPT_POSTFIELDS] = http_build_query($params, null, '&');
     }
     $opts[CURLOPT_URL] = $url;
-    $opts[CURLOPT_CAINFO] = dirname(__FILE__).'/fb_ca_chain_bundle.crt';
+    $opts[CURLOPT_CAINFO] = dirname(__FILE__) . '/fb_ca_chain_bundle.crt';
 
     // disable the 'Expect: 100-continue' behaviour. This causes CURL to wait
     // for 2 seconds if the server does not support this header.
@@ -606,13 +647,15 @@ class Facebook
     curl_setopt_array($ch, $opts);
     $result = curl_exec($ch);
     if ($result === false) {
-      $e = new FacebookApiException(array(
-        'error_code' => curl_errno($ch),
-        'error'      => array(
-          'message' => curl_error($ch),
-          'type'    => 'CurlException',
-        ),
-      ));
+      $e = new FacebookApiException(
+        array(
+          'error_code' => curl_errno($ch),
+          'error' => array(
+            'message' => curl_error($ch),
+            'type' => 'CurlException',
+          ),
+        )
+      );
       curl_close($ch);
       throw $e;
     }
@@ -625,7 +668,8 @@ class Facebook
    *
    * @return String the cookie name
    */
-  protected function getSessionCookieName() {
+  protected function getSessionCookieName()
+  {
     return 'fbs_' . $this->getAppId();
   }
 
@@ -635,7 +679,8 @@ class Facebook
    *
    * @param Array $session the session to use for setting the cookie
    */
-  protected function setCookieFromSession($session=null) {
+  protected function setCookieFromSession($session = null)
+  {
     if (!$this->useCookieSupport()) {
       return;
     }
@@ -665,9 +710,9 @@ class Facebook
     if (headers_sent()) {
       self::errorLog('Could not set cookie. Headers already sent.');
 
-    // ignore for code coverage as we will never be able to setcookie in a CLI
-    // environment
-    // @codeCoverageIgnoreStart
+      // ignore for code coverage as we will never be able to setcookie in a CLI
+      // environment
+      // @codeCoverageIgnoreStart
     } else {
       setcookie($cookieName, $value, $expires, '/', $domain);
     }
@@ -680,12 +725,15 @@ class Facebook
    * @param Array $session the session object
    * @return Array the session object if it validates, null otherwise
    */
-  protected function validateSessionObject($session) {
+  protected function validateSessionObject($session)
+  {
     // make sure some essential fields exist
-    if (is_array($session) &&
-        isset($session['uid']) &&
-        isset($session['access_token']) &&
-        isset($session['sig'])) {
+    if (
+      is_array($session) &&
+      isset($session['uid']) &&
+      isset($session['access_token']) &&
+      isset($session['sig'])
+    ) {
       // validate the signature
       $session_without_sig = $session;
       unset($session_without_sig['sig']);
@@ -713,15 +761,16 @@ class Facebook
    * @param Array the output of getSignedRequest
    * @return Array Something that will work as a session
    */
-  protected function createSessionFromSignedRequest($data) {
+  protected function createSessionFromSignedRequest($data)
+  {
     if (!isset($data['oauth_token'])) {
       return null;
     }
 
     $session = array(
-      'uid'          => $data['user_id'],
+      'uid' => $data['user_id'],
       'access_token' => $data['oauth_token'],
-      'expires'      => $data['expires'],
+      'expires' => $data['expires'],
     );
 
     // put a real sig, so that validateSignature works
@@ -742,7 +791,8 @@ class Facebook
    *                are used by the algorithm?
    * @return Array the payload inside it or null if the sig is wrong
    */
-  protected function parseSignedRequest($signed_request) {
+  protected function parseSignedRequest($signed_request)
+  {
     list($encoded_sig, $payload) = explode('.', $signed_request, 2);
 
     // decode the data
@@ -755,8 +805,11 @@ class Facebook
     }
 
     // check sig
-    $expected_sig = hash_hmac('sha256', $payload,
-                              $this->getApiSecret(), $raw = true);
+    $expected_sig = hash_hmac(
+      'sha256',
+      $payload,
+      $this->getApiSecret(), $raw = true
+    );
     if ($sig !== $expected_sig) {
       self::errorLog('Bad Signed JSON signature!');
       return null;
@@ -771,68 +824,71 @@ class Facebook
    * @param $method String the method name.
    * @return String the URL for the given parameters
    */
-  protected function getApiUrl($method) {
+  protected function getApiUrl($method)
+  {
     static $READ_ONLY_CALLS =
-      array('admin.getallocation' => 1,
-            'admin.getappproperties' => 1,
-            'admin.getbannedusers' => 1,
-            'admin.getlivestreamvialink' => 1,
-            'admin.getmetrics' => 1,
-            'admin.getrestrictioninfo' => 1,
-            'application.getpublicinfo' => 1,
-            'auth.getapppublickey' => 1,
-            'auth.getsession' => 1,
-            'auth.getsignedpublicsessiondata' => 1,
-            'comments.get' => 1,
-            'connect.getunconnectedfriendscount' => 1,
-            'dashboard.getactivity' => 1,
-            'dashboard.getcount' => 1,
-            'dashboard.getglobalnews' => 1,
-            'dashboard.getnews' => 1,
-            'dashboard.multigetcount' => 1,
-            'dashboard.multigetnews' => 1,
-            'data.getcookies' => 1,
-            'events.get' => 1,
-            'events.getmembers' => 1,
-            'fbml.getcustomtags' => 1,
-            'feed.getappfriendstories' => 1,
-            'feed.getregisteredtemplatebundlebyid' => 1,
-            'feed.getregisteredtemplatebundles' => 1,
-            'fql.multiquery' => 1,
-            'fql.query' => 1,
-            'friends.arefriends' => 1,
-            'friends.get' => 1,
-            'friends.getappusers' => 1,
-            'friends.getlists' => 1,
-            'friends.getmutualfriends' => 1,
-            'gifts.get' => 1,
-            'groups.get' => 1,
-            'groups.getmembers' => 1,
-            'intl.gettranslations' => 1,
-            'links.get' => 1,
-            'notes.get' => 1,
-            'notifications.get' => 1,
-            'pages.getinfo' => 1,
-            'pages.isadmin' => 1,
-            'pages.isappadded' => 1,
-            'pages.isfan' => 1,
-            'permissions.checkavailableapiaccess' => 1,
-            'permissions.checkgrantedapiaccess' => 1,
-            'photos.get' => 1,
-            'photos.getalbums' => 1,
-            'photos.gettags' => 1,
-            'profile.getinfo' => 1,
-            'profile.getinfooptions' => 1,
-            'stream.get' => 1,
-            'stream.getcomments' => 1,
-            'stream.getfilters' => 1,
-            'users.getinfo' => 1,
-            'users.getloggedinuser' => 1,
-            'users.getstandardinfo' => 1,
-            'users.hasapppermission' => 1,
-            'users.isappuser' => 1,
-            'users.isverified' => 1,
-            'video.getuploadlimits' => 1);
+    array(
+    'admin.getallocation' => 1,
+    'admin.getappproperties' => 1,
+    'admin.getbannedusers' => 1,
+    'admin.getlivestreamvialink' => 1,
+    'admin.getmetrics' => 1,
+    'admin.getrestrictioninfo' => 1,
+    'application.getpublicinfo' => 1,
+    'auth.getapppublickey' => 1,
+    'auth.getsession' => 1,
+    'auth.getsignedpublicsessiondata' => 1,
+    'comments.get' => 1,
+    'connect.getunconnectedfriendscount' => 1,
+    'dashboard.getactivity' => 1,
+    'dashboard.getcount' => 1,
+    'dashboard.getglobalnews' => 1,
+    'dashboard.getnews' => 1,
+    'dashboard.multigetcount' => 1,
+    'dashboard.multigetnews' => 1,
+    'data.getcookies' => 1,
+    'events.get' => 1,
+    'events.getmembers' => 1,
+    'fbml.getcustomtags' => 1,
+    'feed.getappfriendstories' => 1,
+    'feed.getregisteredtemplatebundlebyid' => 1,
+    'feed.getregisteredtemplatebundles' => 1,
+    'fql.multiquery' => 1,
+    'fql.query' => 1,
+    'friends.arefriends' => 1,
+    'friends.get' => 1,
+    'friends.getappusers' => 1,
+    'friends.getlists' => 1,
+    'friends.getmutualfriends' => 1,
+    'gifts.get' => 1,
+    'groups.get' => 1,
+    'groups.getmembers' => 1,
+    'intl.gettranslations' => 1,
+    'links.get' => 1,
+    'notes.get' => 1,
+    'notifications.get' => 1,
+    'pages.getinfo' => 1,
+    'pages.isadmin' => 1,
+    'pages.isappadded' => 1,
+    'pages.isfan' => 1,
+    'permissions.checkavailableapiaccess' => 1,
+    'permissions.checkgrantedapiaccess' => 1,
+    'photos.get' => 1,
+    'photos.getalbums' => 1,
+    'photos.gettags' => 1,
+    'profile.getinfo' => 1,
+    'profile.getinfooptions' => 1,
+    'stream.get' => 1,
+    'stream.getcomments' => 1,
+    'stream.getfilters' => 1,
+    'users.getinfo' => 1,
+    'users.getloggedinuser' => 1,
+    'users.getstandardinfo' => 1,
+    'users.hasapppermission' => 1,
+    'users.isappuser' => 1,
+    'users.isverified' => 1,
+    'video.getuploadlimits' => 1
+    );
     $name = 'api';
     if (isset($READ_ONLY_CALLS[strtolower($method)])) {
       $name = 'api_read';
@@ -848,7 +904,8 @@ class Facebook
    * @param $params Array optional query parameters
    * @return String the URL for the given parameters
    */
-  protected function getUrl($name, $path='', $params=array()) {
+  protected function getUrl($name, $path = '', $params = array())
+  {
     $url = self::$DOMAIN_MAP[$name];
     if ($path) {
       if ($path[0] === '/') {
@@ -868,7 +925,8 @@ class Facebook
    *
    * @return String the current URL
    */
-  protected function getCurrentUrl() {
+  protected function getCurrentUrl()
+  {
     $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on'
       ? 'https://'
       : 'http://';
@@ -880,7 +938,7 @@ class Facebook
     if (!empty($parts['query'])) {
       $params = array();
       parse_str($parts['query'], $params);
-      foreach(self::$DROP_QUERY_PARAMS as $key) {
+      foreach (self::$DROP_QUERY_PARAMS as $key) {
         unset($params[$key]);
       }
       if (!empty($params)) {
@@ -892,7 +950,7 @@ class Facebook
     $port =
       isset($parts['port']) &&
       (($protocol === 'http://' && $parts['port'] !== 80) ||
-       ($protocol === 'https://' && $parts['port'] !== 443))
+        ($protocol === 'https://' && $parts['port'] !== 443))
       ? ':' . $parts['port'] : '';
 
     // rebuild
@@ -906,13 +964,14 @@ class Facebook
    * @param String $secret the secret to sign with
    * @return String the generated signature
    */
-  protected static function generateSignature($params, $secret) {
+  protected static function generateSignature($params, $secret)
+  {
     // work with sorted data
     ksort($params);
 
     // generate the base string
     $base_string = '';
-    foreach($params as $key => $value) {
+    foreach ($params as $key => $value) {
       $base_string .= $key . '=' . $value;
     }
     $base_string .= $secret;
@@ -925,7 +984,8 @@ class Facebook
    *
    * @param String log message
    */
-  protected static function errorLog($msg) {
+  protected static function errorLog($msg)
+  {
     // disable error log if we are running in a CLI environment
     // @codeCoverageIgnoreStart
     if (php_sapi_name() != 'cli') {
@@ -944,7 +1004,8 @@ class Facebook
    *
    * @param String base64UrlEncodeded string
    */
-  protected static function base64UrlDecode($input) {
+  protected static function base64UrlDecode($input)
+  {
     return base64_decode(strtr($input, '-_', '+/'));
   }
 }

@@ -6,7 +6,7 @@
     <tr>
                 <td>{$info_information}
                         <textarea rows="25">Información del servidor: {$info}
-						
+
 Versión PHP: {$vPHP}
 PHP API: {$vAPI}
 SafeMode: {$safemode}

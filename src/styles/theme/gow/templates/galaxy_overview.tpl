@@ -32,7 +32,7 @@
 		   </td>
 		  </tr>
 		  <tr>
-			<td style="background-color:transparent;border:0px;" colspan="2"> 
+			<td style="background-color:transparent;border:0px;" colspan="2">
 				<input type="submit" value="{$gl_show}">
 			</td>
 		  </tr>
@@ -48,7 +48,7 @@
 			<tr>
 
 				<td>{$missile_count} <input type="text" name="SendMI" size="2" maxlength="7"></td>
-				<td>{$gl_objective}: 
+				<td>{$gl_objective}:
                 	{html_options name=Target options=$MissleSelector}
                 </td>
 			</tr>
@@ -97,7 +97,7 @@
 	<tr>
 		<td colspan="6">({$planetcount})</td>
 		<td colspan="2">
-			<a href="#" style="cursor: pointer;" onmouseover='return overlib("<table width=240><tr><td class=c colspan=2>{$gl_legend}</td></tr><tr><td width=220>{$gl_strong_player}</td><td><span class=strong>{$gl_s}</span></td></tr><tr><td width=220>{$gl_week_player}</td><td><span class=noob>{$gl_w}</span></td></tr><tr><td width=220>{$gl_vacation}</td><td><span class=vacation>{$gl_v}</span></td></tr><tr><td width=220>{$gl_banned}</td><td><span class=banned>{$gl_b}</span></td></tr><tr><td width=220>{$gl_inactive_seven}</td><td><span class=inactive>{$gl_i}</span></td></tr><tr><td width=220>{$gl_inactive_twentyeight}</td><td><span class=longinactive>{$gl_I}</span></td></tr></table>", STICKY, MOUSEOFF, DELAY, 750, CENTER, OFFSETX, -150, OFFSETY, -150 );' onmouseout='return nd();'>{$gl_legend}</a> 
+			<a href="#" style="cursor: pointer;" onmouseover='return overlib("<table width=240><tr><td class=c colspan=2>{$gl_legend}</td></tr><tr><td width=220>{$gl_strong_player}</td><td><span class=strong>{$gl_s}</span></td></tr><tr><td width=220>{$gl_week_player}</td><td><span class=noob>{$gl_w}</span></td></tr><tr><td width=220>{$gl_vacation}</td><td><span class=vacation>{$gl_v}</span></td></tr><tr><td width=220>{$gl_banned}</td><td><span class=banned>{$gl_b}</span></td></tr><tr><td width=220>{$gl_inactive_seven}</td><td><span class=inactive>{$gl_i}</span></td></tr><tr><td width=220>{$gl_inactive_twentyeight}</td><td><span class=longinactive>{$gl_I}</span></td></tr></table>", STICKY, MOUSEOFF, DELAY, 750, CENTER, OFFSETX, -150, OFFSETY, -150 );' onmouseout='return nd();'>{$gl_legend}</a>
 		</td>
 	</tr>
 	<tr>

@@ -66,10 +66,10 @@
                 </tr>
                 <tr>
 					<td class="transparent">lucky<br>Metusalem<br>Meikel<br>Phil<br>Schnippi<br>Inforcer<br>Vobi<br>Onko<br>Sycrog<br>Raito<br>Chlorel<br>e-Zobar<br>Flousedid<br>Allen Spielern im <a href="http://www.titanspace.org" target="blank">Betauni</a> ...<br>... and all Community of 2moons and xNova Revolution </td>
-                </tr>    
+                </tr>
             </table>
         </td>
-    </tr> 
+    </tr>
 </table>
 </center>
 <script type="text/javascript">

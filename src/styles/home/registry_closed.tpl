@@ -29,19 +29,19 @@
 <div class="register">
 	<div class="form-reg">
 		<form name="reg" action="?page=reg&mode=send&lang={$lang}" method="post" id="formID">
-			
+
 				<div class="left-col">
 					<ul class="login">
 
             <h2>{$info}</h2>
-		
+
 				<label for="universe">{$closed}</label>
 
 					</ul>
 
 				</div>
-			
-			
+
+
 		</form>
 	</div>
 </div>

@@ -51,7 +51,7 @@
 		</tr>
         <tr>
           <td colspan="3">
-          <input type="reset" value="{$al_circular_reset}"> 
+          <input type="reset" value="{$al_circular_reset}">
           <input type="submit" value="{$al_save}">
           </td>
         </tr>
@@ -97,7 +97,7 @@
         </tr>
         <tr>
           <td><form action="?page=alliance&amp;mode=admin&amp;edit=exit" method="POST"><input type="submit" value="{$al_continue}" onclick="return confirm('{$al_close_ally}');"></form></td>
-        </tr>  
+        </tr>
      </table>
      <table style="width:50%">
      	<tr>
@@ -105,7 +105,7 @@
         </tr>
         <tr>
           <td><input type="button" onclick="javascript:location.href='game.php?page=alliance&amp;mode=admin&amp;edit=transfer';" value="{$al_continue}"></td>
-        </tr>  
+        </tr>
      </table>
 </div>
 {include file="planet_menu.tpl"}

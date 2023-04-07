@@ -14,8 +14,8 @@
 		<td><div id="shoutbox" style="margin: 5px;vertical-align: text-top;height: {if !$ctype}360px{else}550px;max-width:760px;{/if};overflow:auto;text-align:left;"></div></td>
 	</tr>
 	<tr>
-		<td> 
-		{$chat_message}: <input name="msg" type="text" id="msg" style="width:75%" maxlength="255"> 
+		<td>
+		{$chat_message}: <input name="msg" type="text" id="msg" style="width:75%" maxlength="255">
 		<input type="submit" name="send" value="{$chat_send}" id="send">
 		</td>
 	</tr>
@@ -37,7 +37,7 @@
 		</td>
 	</tr>
 	<tr>
-		<td> 
+		<td>
 			<img src="styles/images/smileys/aggressive.gif" title=":agr:" alt=":agr:" onClick="addSmiley(':agr:')">
 			<img src="styles/images/smileys/angel.gif" title=":angel:" alt=":angel:" onClick="addSmiley(':angel:')">
 			<img src="styles/images/smileys/bad.gif" title=":bad:" alt=":bad:" onClick="addSmiley(':bad:')">
@@ -55,16 +55,16 @@
 			<img src="styles/images/smileys/give_rose.gif" title=":rose:" alt=":rose:" onClick="addSmiley(':rose:')">
 			<img src="styles/images/smileys/good.gif" title=":good:" alt=":good:" onClick="addSmiley(':good:')">
 			<img src="styles/images/smileys/huh.gif" title=":huh:" alt=":huh:" onClick="addSmiley(':huh:')">
-			<img src="styles/images/smileys/lol.gif" title=":D" alt=":D" onClick="addSmiley(':D:')"> 
+			<img src="styles/images/smileys/lol.gif" title=":D" alt=":D" onClick="addSmiley(':D:')">
 			<img src="styles/images/smileys/yu.gif" title=":yu" alt=":yu" onClick="addSmiley(':yu')">
 			<img src="styles/images/smileys/unknw.gif" title=":unknw:" alt=":unknw:" onClick="addSmiley(':unknw:')">
 			<img src="styles/images/smileys/sad.gif" title=":(" alt=":(" onClick="addSmiley(':sad')">
 			<img src="styles/images/smileys/smile.gif" title=":)" alt=":)" onClick="addSmiley(':smile')">
-			<img src="styles/images/smileys/shok.gif" title=":o" alt=":o" onClick="addSmiley(':shok:')"> 
+			<img src="styles/images/smileys/shok.gif" title=":o" alt=":o" onClick="addSmiley(':shok:')">
 			<img src="styles/images/smileys/rofl.gif" title=":rofl" alt=":rofl" onClick="addSmiley(':rofl')">
 			<img src="styles/images/smileys/blackeye.gif" title=":eye" alt=":eye" onClick="addSmiley(':eye')">
 			<img src="styles/images/smileys/tongue.gif" title=":p" alt=":p" onClick="addSmiley(':p')">
-			<img src="styles/images/smileys/wink.gif" title=";)" alt=";)" onClick="addSmiley(';)')">                
+			<img src="styles/images/smileys/wink.gif" title=";)" alt=";)" onClick="addSmiley(';)')">
 			<img src="styles/images/smileys/yahoo.gif" title=":yahoo:" alt=":yahoo:" onClick="addSmiley(':yahoo:')">
 			<br>
 			<img src="styles/images/smileys/mill.gif" title=":tratata:" alt=":tratata:" onClick="addSmiley(':tratata:')">

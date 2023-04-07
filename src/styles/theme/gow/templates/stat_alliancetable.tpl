@@ -1,6 +1,6 @@
 <tr>
 	<th style="width:60px;">{$st_position}</th>
-	<th>{$st_alliance}</th>	
+	<th>{$st_alliance}</th>
 	<th>{$st_members}</th>
 	<th>{$st_points}</th>
 	<th>{$st_per_member}</th>

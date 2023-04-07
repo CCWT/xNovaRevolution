@@ -9,7 +9,7 @@
 	<td>{$bo_username}</td>
 	<td colspan="2"><input name="ban_name" type="text" value="{$name}" readonly="true" class="character"/></td>
 </tr><tr>
-	<td>{$bo_reason} <br><br>{$bo_characters_1}<input id="result2" value="50" size="2" readonly="true" class="character"></td> 
+	<td>{$bo_reason} <br><br>{$bo_characters_1}<input id="result2" value="50" size="2" readonly="true" class="character"></td>
 	<td colspan="2"><textarea name="why" maxlength="50" cols="20" rows="5" onkeyup="$('#result2').val(50 - parseInt($(this).val().length));">{$reas}</textarea></td>
 </tr>
 	{$timesus}
@@ -57,12 +57,12 @@
 	{$UserSelect.List}
 	</select>
 	<br>
-	<a href="?page=bans">{$bo_order_username}</a> &nbsp; <a href="?page=bans&amp;order=id">{$bo_order_id}</a> &nbsp; 
+	<a href="?page=bans">{$bo_order_username}</a> &nbsp; <a href="?page=bans&amp;order=id">{$bo_order_id}</a> &nbsp;
 	<a href="?page=bans&amp;view=bana">{$bo_order_banned}</a>
 	<script TYPE="text/javascript">
 		var UserList = new filterlist(document.getElementsByName('ban_name')[0]);
 	</script>
-	
+
 	<br><br>
 	<a href="javascript:UserList.set('^A')" title="{$bo_select_title} A">A</A>
 	<a href="javascript:UserList.set('^B')" title="{$bo_select_title} B">B</A>
@@ -128,7 +128,7 @@
 	<script TYPE="text/javascript">
 		var UsersBan = new filterlist(document.getElementsByName('unban_name')[0]);
 	</script>
-	
+
 	<br><br>
 	<a href="javascript:UsersBan.set('^A')" title="{$bo_select_title} A">A</A>
 	<a href="javascript:UsersBan.set('^B')" title="{$bo_select_title} B">B</A>

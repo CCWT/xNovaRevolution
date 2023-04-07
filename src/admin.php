@@ -1,33 +1,31 @@
 <?php
 
 /**
- _  \_/ |\ | /¯¯\ \  / /\    |¯¯) |_¯ \  / /¯¯\ |  |   |´¯|¯` | /¯¯\ |\ |5
- ¯  /¯\ | \| \__/  \/ /--\   |¯¯\ |__  \/  \__/ |__ \_/   |   | \__/ | \|Core.
- * @author: Copyright (C) 2011 by Brayan Narvaez (Prinick) developer of xNova Revolution
- * @link: http://www.xnovarevolution.con.ar
-
- * @package 2Moons
- * @author Slaver <slaver7@gmail.com>
- * @copyright 2009 Lucky <douglas@crockford.com> (XGProyecto)
- * @copyright 2011 Slaver <slaver7@gmail.com> (Fork/2Moons)
- * @license http://www.gnu.org/licenses/gpl.html GNU GPLv3 License
- * @version 1.3 (2011-01-21)
- * @link http://code.google.com/p/2moons/
-
- * Please do not remove the credits
+_  \_/ |\ | /ï¿½ï¿½\ \  / /\    |ï¿½ï¿½) |_ï¿½ \  / /ï¿½ï¿½\ |  |   |ï¿½ï¿½|ï¿½` | /ï¿½ï¿½\ |\ |5
+ï¿½  /ï¿½\ | \| \__/  \/ /--\   |ï¿½ï¿½\ |__  \/  \__/ |__ \_/   |   | \__/ | \|Core.
+* @author: Copyright (C) 2011 by Brayan Narvaez (Prinick) developer of xNova Revolution
+* @link: http://www.xnovarevolution.con.ar
+* @package 2Moons
+* @author Slaver <slaver7@gmail.com>
+* @copyright 2009 Lucky <douglas@crockford.com> (XGProyecto)
+* @copyright 2011 Slaver <slaver7@gmail.com> (Fork/2Moons)
+* @license http://www.gnu.org/licenses/gpl.html GNU GPLv3 License
+* @version 1.3 (2011-01-21)
+* @link http://code.google.com/p/2moons/
+* Please do not remove the credits
 */
 
-define('INSIDE'  , true);
+define('INSIDE', true);
 define('IN_ADMIN', true);
 
-define('ROOT_PATH', str_replace('\\', '/',dirname(__FILE__)).'/');
+define('ROOT_PATH', str_replace('\\', '/', dirname(__FILE__)) . '/');
 
 require_once(ROOT_PATH . 'common.php');
 
-if ($USER['authlevel'] < AUTH_MOD) exit;
+if ($USER['authlevel'] < AUTH_MOD)
+	exit;
 
-if(!isset($_SESSION['admin_login']) || $_SESSION['admin_login'] != $USER['password'])
-{
+if (!isset($_SESSION['admin_login']) || $_SESSION['admin_login'] != $USER['password']) {
 	include_once(ROOT_PATH . 'includes/pages/adm/ShowLoginPage.php');
 	ShowLoginPage();
 	exit;
@@ -36,137 +34,137 @@ if(!isset($_SESSION['admin_login']) || $_SESSION['admin_login'] != $USER['passwo
 $page = request_var('page', '');
 $uni = request_var('uni', 0);
 
-if($USER['authlevel'] == AUTH_ADM && !empty($uni))
+if ($USER['authlevel'] == AUTH_ADM && !empty($uni))
 	$_SESSION['adminuni'] = $uni;
-if(empty($_SESSION['adminuni']))
+if (empty($_SESSION['adminuni']))
 	$_SESSION['adminuni'] = $UNI;
 
-switch($page)
-{
+switch ($page) {
 	case 'infos':
 		include_once(ROOT_PATH . 'includes/pages/adm/ShowInformationPage.php');
 		ShowInformationPage();
-	break;
+		break;
 	case 'rights':
 		include_once(ROOT_PATH . 'includes/pages/adm/ShowRightsPage.php');
 		ShowRightsPage();
-	break;
+		break;
 	case 'config':
 		include_once(ROOT_PATH . 'includes/pages/adm/ShowConfigPage.php');
 		ShowConfigPage();
-	break;
+		break;
 	case 'teamspeak':
 		include_once(ROOT_PATH . 'includes/pages/adm/ShowTeamspeakPage.php');
 		ShowTeamspeakPage();
-	break;
+		break;
 	case 'facebook':
 		include_once(ROOT_PATH . 'includes/pages/adm/ShowFacebookPage.php');
 		ShowFacebookPage();
-	break;
+		break;
 	case 'module':
 		include_once(ROOT_PATH . 'includes/pages/adm/ShowModulePage.php');
 		ShowModulePage();
-	break;
+		break;
 	case 'statsconf':
 		include_once(ROOT_PATH . 'includes/pages/adm/ShowStatsPage.php');
 		ShowStatsPage();
-	break;
+		break;
 	case 'update':
 		include_once(ROOT_PATH . 'includes/pages/adm/ShowUpdatePage.php');
 		ShowUpdatePage();
-	break;
+		break;
 	case 'create':
 		include_once(ROOT_PATH . 'includes/pages/adm/ShowCreatorPage.php');
 		ShowCreatorPage();
-	break;
+		break;
 	case 'accounteditor':
 		include_once(ROOT_PATH . 'includes/pages/adm/ShowAccountEditorPage.php');
 		ShowAccountEditorPage();
-	break;
+		break;
 	case 'active':
 		include_once(ROOT_PATH . 'includes/pages/adm/ShowActivePage.php');
 		ShowActivePage();
-	break;
+		break;
 	case 'bans':
 		include_once(ROOT_PATH . 'includes/pages/adm/ShowBanPage.php');
 		ShowBanPage();
-	break;
+		break;
 	case 'messagelist':
 		include_once(ROOT_PATH . 'includes/pages/adm/ShowMessageListPage.php');
 		ShowMessageListPage();
-	break;
+		break;
 	case 'globalmessage':
 		include_once(ROOT_PATH . 'includes/pages/adm/ShowSendMessagesPage.php');
 		ShowSendMessagesPage();
-	break;
+		break;
 	case 'fleets':
 		include_once(ROOT_PATH . 'includes/pages/adm/ShowFlyingFleetPage.php');
 		ShowFlyingFleetPage();
-	break;
+		break;
 	case 'accountdata':
 		include_once(ROOT_PATH . 'includes/pages/adm/ShowAccountDataPage.php');
 		ShowAccountDataPage();
-	break;
+		break;
 	case 'support':
 		include_once(ROOT_PATH . 'includes/pages/adm/ShowSupportPage.php');
 		ShowSupportPage();
-	break;
+		break;
 	case 'password':
 		include_once(ROOT_PATH . 'includes/pages/adm/ShowPassEncripterPage.php');
 		ShowPassEncripterPage();
-	break;
+		break;
 	case 'search':
 		include_once(ROOT_PATH . 'includes/pages/adm/ShowSearchPage.php');
 		ShowSearchPage();
-	break;
+		break;
 	case 'qeditor':
 		include_once(ROOT_PATH . 'includes/pages/adm/ShowQuickEditorPage.php');
 		ShowQuickEditorPage();
-	break;
+		break;
 	case 'statsupdate':
 		include_once(ROOT_PATH . 'includes/pages/adm/ShowStatUpdatePage.php');
 		ShowStatUpdatePage();
-	break;
+		break;
 	case 'reset':
 		include_once(ROOT_PATH . 'includes/pages/adm/ShowResetPage.php');
 		ShowResetPage();
-	break;
+		break;
 	case 'news':
 		include_once(ROOT_PATH . 'includes/pages/adm/ShowNewsPage.php');
 		ShowNewsPage();
-	break;
+		break;
 	case 'topnav':
 		include_once(ROOT_PATH . 'includes/pages/adm/ShowTopnavPage.php');
 		ShowTopnavPage();
-	break;
+		break;
 	case 'mods':
 		include_once(ROOT_PATH . 'includes/pages/adm/ShowModVersionPage.php');
 		ShowModVersionPage();
-	break;
+		break;
 	case 'overview':
 		include_once(ROOT_PATH . 'includes/pages/adm/ShowOverviewPage.php');
 		ShowOverviewPage();
-	break;
+		break;
 	case 'menu':
 		include_once(ROOT_PATH . 'includes/pages/adm/ShowMenuPage.php');
 		ShowMenuPage();
-	break;
+		break;
 	case 'clearcache':
 		include_once(ROOT_PATH . 'includes/pages/adm/ShowClearCachePage.php');
 		ShowClearCachePage();
-	break;
+		break;
 	case 'universe':
 		include_once(ROOT_PATH . 'includes/pages/adm/ShowUniversePage.php');
 		ShowUniversePage();
-	break;
+		break;
 	case 'multiips':
 		include_once(ROOT_PATH . 'includes/pages/adm/ShowMultiIPPage.php');
 		ShowMultiIPPage();
-	break;
+		break;
 	default:
 		include_once(ROOT_PATH . 'includes/pages/adm/ShowIndexPage.php');
 		ShowIndexPage();
-	break;
+		break;
 }
 
 ?>
+

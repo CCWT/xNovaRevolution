@@ -16,7 +16,7 @@
 <div class="register">
 	<div class="form-reg">
 		<form name="lostpassword" action="index.php?page=lostpassword&mode=send&lang={$lang}" method="post" id="formID">
-			
+
 				<div class="left-col">
 					<ul class="login">
 
@@ -25,18 +25,18 @@
         		<select name="universe" id="Uni">
             {html_options options=$AvailableUnis selected=$UNI}
 			    </select><br>
-			
+
 				<li><label for="email">{$email}</label>
         	<div class="bg"><input type="text" name="email" class="text" id="email" tabindex="1" class="input" /></div></li>
-							
+
 					</ul>
 
 				</div>
 				<div class="right-col">
 				  <br><br><br><br><input tabindex="2" class="submit" type="submit" value="{$send}"/>
-				
+
 				</div>
-			
+
 		</form>
 	</div>
 </div>

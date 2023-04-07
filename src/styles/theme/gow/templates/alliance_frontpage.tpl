@@ -29,8 +29,8 @@
         </tr>
         <tr>
             <td colspan="2"><a href="javascript:OpenPopup('?page=chat&amp;chat_type=ally', '', 800, 800);">{$al_goto_chat}</a></td>
-        </tr> 
-		{if $rights.seeapply && $req_count > 0}		
+        </tr>
+		{if $rights.seeapply && $req_count > 0}
         <tr>
 			<td>{$al_requests}</td><td><a href="?page=alliance&amp;mode=admin&amp;edit=requests">{$requests}</a></td>
 		</tr>
@@ -76,10 +76,10 @@
 		<tr>
 			<td>{$pl_fightwon}</td><td>{pretty_number($fightwon)} {if $totalfight}({round($fightwon / $totalfight * 100, 2)}%){/if}</td>
 		</tr>
-		<tr>	
+		<tr>
 			<td>{$pl_fightlose}</td><td>{pretty_number($fightlose)} {if $totalfight}({round($fightlose / $totalfight * 100, 2)}%){/if}</td>
 		</tr>
-		<tr>	
+		<tr>
 			<td>{$pl_fightdraw}</td><td>{pretty_number($fightdraw)} {if $totalfight}({round($fightdraw / $totalfight * 100, 2)}%){/if}</td>
 		</tr>
 		<tr>

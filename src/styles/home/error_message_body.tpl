@@ -64,16 +64,16 @@ hr {
 -->
 </style>
 </head>
-<body>	
-<table width="520" align="center" cellspacing="0" cellpadding="0">	
+<body>
+<table width="520" align="center" cellspacing="0" cellpadding="0">
 		        	 <tr>
-			
+
 	            <h2>{$fcm_info}</h2>
-		
+
      			<label for="character">{$mes}</label>
 
 				<br>
-				
+
             <br class="clear" />
 </tr>
    		</body>

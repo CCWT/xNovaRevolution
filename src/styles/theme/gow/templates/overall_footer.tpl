@@ -49,8 +49,8 @@ if (!vacation) {
 	new resourceTicker(resourceTickerMetal);
 	new resourceTicker(resourceTickerCrystal);
 	new resourceTicker(resourceTickerDeuterium);
-	new resourceTicker(resourceTickerNorio);	
-} 
+	new resourceTicker(resourceTickerNorio);
+}
 {/if}
 
 function UhrzeitAnzeigen()
@@ -77,8 +77,8 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 })();
 {/if}
 {if $debug == 1}
-function handleErr(errMessage, url, line) 
-{ 
+function handleErr(errMessage, url, line)
+{
 	error="There is an error at this page. Please view www.xnovarevolution.com.ar\n";
 	error+="Error: " + errMessage+ "\n";
 	error+="URL: " + url + "\n";
@@ -87,10 +87,10 @@ function handleErr(errMessage, url, line)
 	alert(error);
 	if(typeof console == "object")
 		console.log(error);
- 
-	return true; 
-} 
- 
+
+	return true;
+}
+
 onerror = handleErr;
 {/if}
 </script>

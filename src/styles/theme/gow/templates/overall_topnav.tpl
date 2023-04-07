@@ -4,8 +4,8 @@
 			<td class="header" style="width: 150px;">
 				<table class="header">
 					<tr class="header">
-						<td class="header" style="width: 50px;"><img src="{$dpath}planeten/small/s_{$image}.jpg" height="50" width="50" alt="Planetenbild"></td> 
-						<td class="header" style="background:url({$dpath}img/nav.png);">	  
+						<td class="header" style="width: 50px;"><img src="{$dpath}planeten/small/s_{$image}.jpg" height="50" width="50" alt="Planetenbild"></td>
+						<td class="header" style="background:url({$dpath}img/nav.png);">
 						<select onChange="document.location = $(this).val();">
 						{html_options options=$PlanetSelect selected=$current_planet}
 						</select>
@@ -35,7 +35,7 @@ onmouseout="return nd();"><img src="{$dpath}images/norio.jpg" alt="{$Norio}"></a
 						<td class="header" style="background:url({$dpath}img/nav.png);">
 							<a style="cursor:help" href="javascript:void(0);" onmouseover="return overlib('{$Darkmatter}');"
 onmouseout="return nd();"><img src="{$dpath}images/materia_oscura.gif" alt="{$Darkmatter}"></a>
-						</td>	     
+						</td>
 						<td class="header" style="background:url({$dpath}img/nav.png);">
 							<a style="cursor:help" href="javascript:void(0);" onmouseover="return overlib('{$Energy}');"
 onmouseout="return nd();"><img src="{$dpath}images/energia.jpg" alt="{$Energy}"></a>
@@ -45,7 +45,7 @@ onmouseout="return nd();"><img src="{$dpath}images/energia.jpg" alt="{$Energy}">
 						<td class="header res_current" id="current_metal" style="background:url({$dpath}img/nav.png);">{pretty_number($metal)}</td>
 						<td class="header res_current" id="current_crystal" style="background:url({$dpath}img/nav.png);">{pretty_number($crystal)}</td>
 						<td class="header res_current" id="current_deuterium" style="background:url({$dpath}img/nav.png);">{pretty_number($deuterium)}</td>
-						<td class="header res_current" id="current_norio" style="background:url({$dpath}img/nav.png);">{pretty_number($norio)}</td>						
+						<td class="header res_current" id="current_norio" style="background:url({$dpath}img/nav.png);">{pretty_number($norio)}</td>
 						<td class="header res_current" style="background:url({$dpath}img/nav.png);">{$darkmatter}</td>
 						<td class="header res_current" style="background:url({$dpath}img/nav.png);" >{$energy}</td>
 					</tr>

@@ -31,7 +31,7 @@
 	<td><a href="javascript:ajax('./index.php?page=reg&mode=valid&lang={$UserLang}&clef={$User.cle}&admin=1','{$User.username}');">{$aktivieren}</a></td>
 	<td><a href="?page=active&amp;action=delete&id={$User.id}" onclick="return confirm('{$sicher}{$User.username} {$entfernen}');"><img border="0" src="./styles/images/r1.png"></a></td>
 </tr>
-{/foreach}	
+{/foreach}
 <tr><td colspan="8">{$insgesamt} {$smarty.foreach.User.total} {$nicht_aktivierte}</td></tr>
 </table>
 {include file="adm/overall_footer.tpl"}

@@ -9,7 +9,7 @@
 	<select name="id_1" size="20" style="width:80%;">
 		{$UserList}
 	</select>
-	
+
 	<script type="text/javascript">
 		var UserList = new filterlist(document.getElementsByName('id_1')[0]);
 	</script>

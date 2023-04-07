@@ -1,11 +1,10 @@
 <?php
 
 /**
-_  \_/ |\ | /¯¯\ \  / /\    |¯¯) |_¯ \  / /¯¯\ |  |   |´¯|¯` | /¯¯\ |\ |5
-¯  /¯\ | \| \__/  \/ /--\   |¯¯\ |__  \/  \__/ |__ \_/   |   | \__/ | \|Core.
+_  \_/ |\ | /ï¿½ï¿½\ \  / /\    |ï¿½ï¿½) |_ï¿½ \  / /ï¿½ï¿½\ |  |   |ï¿½ï¿½|ï¿½` | /ï¿½ï¿½\ |\ |5
+ï¿½  /ï¿½\ | \| \__/  \/ /--\   |ï¿½ï¿½\ |__  \/  \__/ |__ \_/   |   | \__/ | \|Core.
 * @author: Copyright (C) 2011 by Brayan Narvaez (Prinick) developer of xNova Revolution
 * @link: http://www.xnovarevolution.con.ar
-
 * @package 2Moons
 * @author Slaver <slaver7@gmail.com>
 * @copyright 2009 Lucky <douglas@crockford.com> (XGProyecto)
@@ -13,7 +12,6 @@ _  \_/ |\ | /¯¯\ \  / /\    |¯¯) |_¯ \  / /¯¯\ |  |   |´¯|¯` | /¯¯\ |\ |5
 * @license http://www.gnu.org/licenses/gpl.html GNU GPLv3 License
 * @version 1.3 (2011-01-21)
 * @link http://code.google.com/p/2moons/
-
 * Please do not remove the credits
 */
 
@@ -35,34 +33,33 @@ class DB_mysqli extends mysqli
     */
    public function __construct($exception = true)
    {
-      $this->con         = $GLOBALS['database'];
-      $this->exception   = $exception;
+      $this->con = $GLOBALS['database'];
+      $this->exception = $exception;
 
-        if (!isset($this->con['port'])) {
-            $this->con['port'] = 3306;
-        }
+      if (!isset($this->con['port'])) {
+         $this->con['port'] = 3306;
+      }
 
       @parent::__construct($this->con['host'], $this->con['user'], $this->con['userpw'], $this->con['databasename'], $this->con['port']);
 
-      if(mysqli_connect_error())
-      {
-         if($this->exception == true)
-            throw new Exception("Connection to database failed: ".mysqli_connect_error());
-         elseif(defined('INSTALL'))
+      if (mysqli_connect_error()) {
+         if ($this->exception == true)
+            throw new Exception("Connection to database failed: " . mysqli_connect_error());
+         elseif (defined('INSTALL'))
             return false;
-      }      
+      }
       parent::set_charset("utf8");
       parent::query("SET SESSION sql_mode = '';");
    }
-   
+
    /**
     * Close current database connection.
     *
     * @return void
     */
    public function __destruct()
-   {   
-      if(!mysqli_connect_error())
+   {
+      if (!mysqli_connect_error())
          parent::close();
    }
 
@@ -73,22 +70,19 @@ class DB_mysqli extends mysqli
     *
     * @return resource   Results of the query
     */
-   public function query($resource)
+   public function query($resource, $resultmode = NULL)
    {
-      if($result = parent::query($resource))
-      {
+      if ($result = parent::query($resource)) {
          $this->queryCount++;
          return $result;
-      }
-      else
-      {
-         if($this->exception == true) {
-            throw new Exception("SQL Error: ".$this->error."<br><br>Query Code: ".$resource);
+      } else {
+         if ($this->exception == true) {
+            throw new Exception("SQL Error: " . $this->error . "<br><br>Query Code: " . $resource);
          } else {
-            return "SQL Error: ".$this->error;
+            return "SQL Error: " . $this->error;
          }
       }
-        return false;
+      return false;
    }
    /**
     * Purpose a query on selected database.
@@ -99,12 +93,12 @@ class DB_mysqli extends mysqli
     */
 
    public function uniquequery($resource)
-   {      
+   {
       $result = $this->query($resource);
       $Return = $result->fetch_array(MYSQLI_ASSOC);
       $result->close();
       return $Return;
-      
+
    }
    /**
     * Purpose a query on selected database.
@@ -115,12 +109,12 @@ class DB_mysqli extends mysqli
     */
 
    public function countquery($resource)
-   {      
+   {
       $result = $this->query($resource);
       list($Return) = $result->fetch_array(MYSQLI_NUM);
       $result->close();
       return $Return;
-   }   
+   }
    /**
     * Purpose a query on selected database.
     *
@@ -130,16 +124,16 @@ class DB_mysqli extends mysqli
     */
 
    public function fetchquery($resource, $encode = array())
-   {      
+   {
       $result = $this->query($resource);
-      $Return   = array();
-      $Col   = 0;
-      while($Data   = $result->fetch_array(MYSQLI_ASSOC)) {
-         foreach($Data as $Key => $Store) {
-            if(in_array($Key, $encode))
-               $Data[$Key]   = base64_encode($Store);
+      $Return = array();
+      $Col = 0;
+      while ($Data = $result->fetch_array(MYSQLI_ASSOC)) {
+         foreach ($Data as $Key => $Store) {
+            if (in_array($Key, $encode))
+               $Data[$Key] = base64_encode($Store);
          }
-         $Return[]   = $Data;
+         $Return[] = $Data;
       }
       $result->close();
       return $Return;
@@ -200,12 +194,12 @@ class DB_mysqli extends mysqli
     *
     * @return string Returns the escaped string, or false on error.
     */
-   
-    public function sql_escape($string, $flag = false)
-    {
-      return ($flag === false) ? parent::escape_string($string): addcslashes(parent::escape_string($string), '%_');
-    }
-   
+
+   public function sql_escape($string, $flag = false)
+   {
+      return ($flag === false) ? parent::escape_string($string) : addcslashes(parent::escape_string($string), '%_');
+   }
+
    public function str_correction($str)
    {
       return stripcslashes($str);
@@ -220,7 +214,7 @@ class DB_mysqli extends mysqli
    {
       return parent::get_client_info();
    }
-   
+
    /**
     * Returns used mysqli-Verions.
     *
@@ -242,35 +236,35 @@ class DB_mysqli extends mysqli
    {
       return $resource->close();
    }
-   
+
    public function multi_query($resource)
-   {   
-      $Timer   = microtime(true);
-      if(parent::multi_query($resource))
-      {
+   {
+      $Timer = microtime(true);
+      if (parent::multi_query($resource)) {
          do {
-             if ($result = parent::store_result())
+            if ($result = parent::store_result())
                $result->free();
-            
+
             $this->queryCount++;
-               
-            if(!parent::more_results()){break;}
-               
-         } while (parent::next_result());      
+
+            if (!parent::more_results()) {
+               break;
+            }
+
+         } while (parent::next_result());
       }
-      
-      $this->SQL[]   = $resource;
-   
-      if ($this->errno)
-      {
-         if($this->exception == true) {
-            throw new Exception("SQL Error: ".$this->error."<br><br>Query Code: ".$resource);
+
+      $this->SQL[] = $resource;
+
+      if ($this->errno) {
+         if ($this->exception == true) {
+            throw new Exception("SQL Error: " . $this->error . "<br><br>Query Code: " . $resource);
          } else {
-            return "SQL Error: ".$this->error;
+            return "SQL Error: " . $this->error;
          }
       }
    }
-   
+
    public function get_sql()
    {
       return $this->queryCount;
@@ -278,3 +272,4 @@ class DB_mysqli extends mysqli
 }
 
 ?>
+

@@ -1,6 +1,6 @@
 /**
- _  \_/ |\ | /¯¯\ \  / /\    |¯¯) |_¯ \  / /¯¯\ |  |   |´¯|¯` | /¯¯\ |\ |5
- ¯  /¯\ | \| \__/  \/ /--\   |¯¯\ |__  \/  \__/ |__ \_/   |   | \__/ | \|Core.
+ _  \_/ |\ | /ï¿½ï¿½\ \  / /\    |ï¿½ï¿½) |_ï¿½ \  / /ï¿½ï¿½\ |  |   |ï¿½ï¿½|ï¿½` | /ï¿½ï¿½\ |\ |5
+ ï¿½  /ï¿½\ | \| \__/  \/ /--\   |ï¿½ï¿½\ |__  \/  \__/ |__ \_/   |   | \__/ | \|Core.
  * @author: Copyright (C) 2011 by Brayan Narvaez (Prinick) developer of xNova Revolution
  * @link: http://www.xnovarevolution.con.ar
 
@@ -15,43 +15,47 @@
  * Please do not remove the credits
 */
 
-html, body{
+html,
+body {
 	padding: 0px;
 	margin: 0px;
 	height: 100%;
 }
 
-table{
+table {
 	margin: auto;
 }
 
-.yes{
-	color:lime;
-}
-.ok{
-	color:yellow;
-}
-.no{
-	color:red;
+.yes {
+	color: lime;
 }
 
-#menu{
+.ok {
+	color: yellow;
+}
+
+.no {
+	color: red;
+}
+
+#menu {
 	padding: 0 !important;
 }
 
-.content{
+.content {
 	position: static !important;
 	width: 100% !important;
 }
 
 a.out {
 	font-size: 13px;
-	font-stretch:expanded;
+	font-stretch: expanded;
 	border: 1px #FF0000 solid;
 	color: #FF0000;
 	cursor: pointer;
-	text-align:center;
+	text-align: center;
 }
+
 a.out:hover {
 	font-size: 13px;
 	text-decoration: none;
@@ -59,17 +63,18 @@ a.out:hover {
 	cursor: pointer;
 	color: #FFFFFF;
 	background-color: #CC0000;
-	text-align:center;
+	text-align: center;
 }
 
 a.topn {
 	font-size: 13px;
-	font-stretch:expanded;
+	font-stretch: expanded;
 	border: 1px #FFFFFF solid;
 	color: #FFFFFF;
 	cursor: pointer;
-	text-align:center;
+	text-align: center;
 }
+
 a.topn:hover {
 	font-size: 13px;
 	text-decoration: none;
@@ -77,22 +82,50 @@ a.topn:hover {
 	cursor: pointer;
 	color: #000000;
 	background-color: #66CCFF;
-	text-align:center;
+	text-align: center;
 }
-#progressbar{border: 1px solid}
-.ui-progressbar-value { background-image: url(../images/jquery/pbar-ani.gif)};
-.button{background:url(../images/Adm/blank.gif);border:1px lime solid;color:#FFFFFF;}
-.button:hover{background:url(../images/Adm/blank.gif);border:1px aqua solid;cursor:pointer;color:#FFFFFF;}
-.span{ vertical-align:baseline}
-.gf-snippet, .gfc-resultsHeader{display:none}
+
+#progressbar {
+	border: 1px solid
+}
+
+.ui-progressbar-value {
+	background-image: url(../images/jquery/pbar-ani.gif)
+}
+
+;
+
+.button {
+	background: url(../images/Adm/blank.gif);
+	border: 1px lime solid;
+	color: #FFFFFF;
+}
+
+.button:hover {
+	background: url(../images/Adm/blank.gif);
+	border: 1px aqua solid;
+	cursor: pointer;
+	color: #FFFFFF;
+}
+
+.span {
+	vertical-align: baseline
+}
+
+.gf-snippet,
+.gfc-resultsHeader {
+	display: none
+}
 
 #fb_iframe.fbConnectWidgetTopmost {
-border-style:none !important;
+	border-style: none !important;
 }
+
 #fb_iframe .lightblue_box {
-background-color:transparent !important;
-border:medium none !important;
+	background-color: transparent !important;
+	border: medium none !important;
 }
-#fb_iframe .UIIntentionalStory_Message{
-color: #CCCCCC;
+
+#fb_iframe .UIIntentionalStory_Message {
+	color: #CCCCCC;
 }

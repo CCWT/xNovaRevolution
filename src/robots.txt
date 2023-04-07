@@ -283,7 +283,7 @@ Disallow: /
 User-agent: VCI
 Disallow: /
 
-User-agent: Szukacz/1.4 
+User-agent: Szukacz/1.4
 Disallow: /
 
 User-agent: QueryN Metasearch
@@ -292,7 +292,7 @@ Disallow: /
 User-agent: Openfind data gathere
 Disallow: /
 
-User-agent: Openfind 
+User-agent: Openfind
 Disallow: /
 
 User-agent: Xenu's Link Sleuth 1.1c

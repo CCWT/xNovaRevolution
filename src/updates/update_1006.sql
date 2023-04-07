@@ -1,1 +1,2 @@
-INSERT INTO prefix_config (`config_name`, `config_value`) VALUES ('halt_speed', '1');
+INSERT INTO prefix_config (`config_name`, `config_value`)
+VALUES ('halt_speed', '1');

@@ -1,6 +1,6 @@
 ﻿Olá %1$s
 
-Obrigado, o registo no %2$s já está completo. 
+Obrigado, o registo no %2$s já está completo.
 
 Estamos satisfeitos que tenha decidido tomar parte da nossa comunidade de jogadores, esperamos que goste.
 

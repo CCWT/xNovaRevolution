@@ -51,7 +51,7 @@ function filterlist(selectobj) {
   //==================================================
 
   //--------------------------------------------------
-  this.init = function() {
+  this.init = function () {
     // This method initilizes the object.
     // This method is called automatically when you create the object.
     // You should call this again if you alter the selectobj parameter.
@@ -62,7 +62,7 @@ function filterlist(selectobj) {
     // Make a copy of the select list options array
     this.optionscopy = new Array();
     if (this.selectobj && this.selectobj.options) {
-      for (var i=0; i < this.selectobj.options.length; i++) {
+      for (var i = 0; i < this.selectobj.options.length; i++) {
 
         // Create a new Option
         this.optionscopy[i] = new Option();
@@ -84,7 +84,7 @@ function filterlist(selectobj) {
   }
 
   //--------------------------------------------------
-  this.reset = function() {
+  this.reset = function () {
     // This method resets the select list to the original state.
     // It also unselects all of the options.
 
@@ -93,12 +93,12 @@ function filterlist(selectobj) {
 
 
   //--------------------------------------------------
-  this.set = function(pattern) {
+  this.set = function (pattern) {
     // This method removes all of the options from the select list,
     // then adds only the options that match the pattern regexp.
     // It also unselects all of the options.
 
-    var loop=0, index=0, regexp, e;
+    var loop = 0, index = 0, regexp, e;
 
     if (!this.selectobj) return this.debug('selectobj not defined');
     if (!this.selectobj.options) return this.debug('selectobj.options not defined');
@@ -114,7 +114,7 @@ function filterlist(selectobj) {
       // Initialize the regexp
       regexp = new RegExp(pattern, this.flags);
 
-    } catch(e) {
+    } catch (e) {
 
       // There was an error creating the regexp.
 
@@ -129,14 +129,14 @@ function filterlist(selectobj) {
 
     // Loop through the entire select list and
     // add the matching items to the select list
-    for (loop=0; loop < this.optionscopy.length; loop++) {
+    for (loop = 0; loop < this.optionscopy.length; loop++) {
 
       // This is the option that we're currently testing
       var option = this.optionscopy[loop];
 
       // Check if we have a match
       if ((this.match_text && regexp.test(option.text)) ||
-          (this.match_value && regexp.test(option.value))) {
+        (this.match_value && regexp.test(option.value))) {
 
         // We have a match, so add this option to the select list
         // and increment the index
@@ -157,7 +157,7 @@ function filterlist(selectobj) {
 
 
   //--------------------------------------------------
-  this.set_ignore_case = function(value) {
+  this.set_ignore_case = function (value) {
     // This method sets the regexp flags.
     // If value is true, sets the flags to "i".
     // If value is false, sets the flags to "".
@@ -171,7 +171,7 @@ function filterlist(selectobj) {
 
 
   //--------------------------------------------------
-  this.debug = function(msg) {
+  this.debug = function (msg) {
     if (this.show_debug) {
       alert('FilterList: ' + msg);
     }

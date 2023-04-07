@@ -23,7 +23,7 @@ function change3(){
 	<td><input name="ts_on"{if $ts_on == 1} checked="checked"{/if} type="checkbox"></td>
 </tr><tr>
 	<td>{$ts_version}</td>
-	<td><input type="radio" name="ts_v" value="2" onclick="change2();"> 2 
+	<td><input type="radio" name="ts_v" value="2" onclick="change2();"> 2
     <input type="radio" name="ts_v" value="3" onclick="change3();"> 3</td>
 </tr><tr>
 	<td>{$ts_serverip}:</td>

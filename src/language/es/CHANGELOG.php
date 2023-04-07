@@ -1,28 +1,26 @@
 <?php
 
 /**
- _  \_/ |\ | /¯¯\ \  / /\    |¯¯) |_¯ \  / /¯¯\ |  |   |´¯|¯` | /¯¯\ |\ |5
- ¯  /¯\ | \| \__/  \/ /--\   |¯¯\ |__  \/  \__/ |__ \_/   |   | \__/ | \|Core.
- * @author: Copyright (C) 2011 by Brayan Narvaez (Prinick) developer of xNova Revolution
- * @link: http://www.xnovarevolution.con.ar
-
- * @package 2Moons
- * @author Slaver <slaver7@gmail.com>
- * @copyright 2009 Lucky <douglas@crockford.com> (XGProyecto)
- * @copyright 2011 Slaver <slaver7@gmail.com> (Fork/2Moons)
- * @license http://www.gnu.org/licenses/gpl.html GNU GPLv3 License
- * @version 1.3 (2011-01-21)
- * @link http://code.google.com/p/2moons/
-
- * Please do not remove the credits
+_  \_/ |\ | /¯¯\ \  / /\    |¯¯) |_¯ \  / /¯¯\ |  |   |´¯|¯` | /¯¯\ |\ |5
+¯  /¯\ | \| \__/  \/ /--\   |¯¯\ |__  \/  \__/ |__ \_/   |   | \__/ | \|Core.
+* @author: Copyright (C) 2011 by Brayan Narvaez (Prinick) developer of xNova Revolution
+* @link: http://www.xnovarevolution.con.ar
+* @package 2Moons
+* @author Slaver <slaver7@gmail.com>
+* @copyright 2009 Lucky <douglas@crockford.com> (XGProyecto)
+* @copyright 2011 Slaver <slaver7@gmail.com> (Fork/2Moons)
+* @license http://www.gnu.org/licenses/gpl.html GNU GPLv3 License
+* @version 1.3 (2011-01-21)
+* @link http://code.google.com/p/2moons/
+* Please do not remove the credits
 */
 
-$LNG['Version']     = 'Versi&oacute;n';
+$LNG['Version'] = 'Versi&oacute;n';
 $LNG['Description'] = 'Descripci&oacute;n';
 
-$LNG['changelog']   = array(
+$LNG['changelog'] = array(
 
-'<font color="lime" size="1" face="arial">XNOVA 5.1</font>' => 'xNovaRevolution v5.1
+    '<font color="lime" size="1" face="arial">XNOVA 5.1</font>' => 'xNovaRevolution v5.1
 - ADD: FirePHP Log System
 - ADD: New pack of spanish language
 - ADD: New language RO by alin
@@ -68,7 +66,7 @@ $LNG['changelog']   = array(
 - FIX: Language RU by spaceomega
 ',
 
-'<font size="1" face="arial">XNOVA 5.0</font>' => 'xNovaRevolution v5.0
+    '<font size="1" face="arial">XNOVA 5.0</font>' => 'xNovaRevolution v5.0
 - ADD: New pack of spanish language
 - ADD: News templates
 - ADD: New pages of Login, Register and Lostpassword
@@ -89,7 +87,7 @@ $LNG['changelog']   = array(
 New version of 2moons created by <a href="http://www.xnovarevolution.com.ar/?page_id=11" target="_blank">Brayan Narv&aacute;ez</a> on 19/04/2011.<br>
 ',
 
-'v1.2' => 'ShadoX 14.09.10
+    'v1.2' => 'ShadoX 14.09.10
 - ADD: Set Max Fleets on ACS (Default: 16)
 - ADD: New RightsSystem on ACP
 - ADD: .htaccess Protection for some dirs
@@ -113,7 +111,7 @@ New version of 2moons created by <a href="http://www.xnovarevolution.com.ar/?pag
 - DIV: Sicherheit im Game erhöht
 - DIV: Diverse Anpassungen am Game
 ',
-'v1.1' => 'ShadoX 31.08.10
+    'v1.1' => 'ShadoX 31.08.10
 - ADD: GoW Skin
 - ADD: Mod Versions Control
 - ADD: Cronjoboption für Banner
@@ -128,7 +126,7 @@ New version of 2moons created by <a href="http://www.xnovarevolution.com.ar/?pag
 - DIV: Sicherheit im Game erhöht
 - DIV: Diverse Anpassungen am Game
 ',
-'v1.0' => 'ShadoX 07.08.10
+    'v1.0' => 'ShadoX 07.08.10
 - FIX: Global Messages
 - FIX: Forgotten Password
 - FIX: Gamereset
@@ -147,7 +145,7 @@ New version of 2moons created by <a href="http://www.xnovarevolution.com.ar/?pag
 - DIV: Changed System of Rapidfire
 - DIV: Solved Problems with BattleSimulator
 ',
-'RC6' => 'ShadoX 28.07.10
+    'RC6' => 'ShadoX 28.07.10
 - ADD: Russian Language (ssAAss &amp; InquisitorEA)
 - ADD: Portuguese Language (morgado)
 - ADD: Spanish Language (ZideN) ALPHA (!)
@@ -171,7 +169,7 @@ New version of 2moons created by <a href="http://www.xnovarevolution.com.ar/?pag
 - DIV: Update Smarty Engine
 - DIV: Diverse Anpassungen am Game
 ',
-'RC5.1' => 'ShadoX 23.06.10
+    'RC5.1' => 'ShadoX 23.06.10
 - ADD: Für Halten muss man in der Ally/Buddy sein
 - ADD: Name des HP bei der Reg.
 - ADD: Passwort Abfrage bei Authlevel/Reset
@@ -197,7 +195,7 @@ New version of 2moons created by <a href="http://www.xnovarevolution.com.ar/?pag
 - DIV: Sicherheit im Game erhöht
 - DIV: Diverse Anpassungen am Game
 ',
-'RC5.0' => 'ShadoX 30.05.10
+    'RC5.0' => 'ShadoX 30.05.10
 - ADD: Neue Schiffe
 - ADD: Support Planet in System != 15
 - ADD: Cookie für LoginMusik
@@ -237,7 +235,7 @@ New version of 2moons created by <a href="http://www.xnovarevolution.com.ar/?pag
 - DIV: Diverse Anpassungen am Game
 ',
 
-'RC5.0b8' => 'ShadoX 20.04.10
+    'RC5.0b8' => 'ShadoX 20.04.10
 - FIX: Bann
 - FIX: Unmarkierte Nachrichten Löschen
 - FIX: Query log
@@ -255,7 +253,7 @@ New version of 2moons created by <a href="http://www.xnovarevolution.com.ar/?pag
 - DIV: Diverse Anpassungen am Game
 ',
 
-'RC5.0b7' => 'ShadoX 16.04.10
+    'RC5.0b7' => 'ShadoX 16.04.10
 - ADD: Google Analytics Mod
 - FIX: max Button, if thousend Sep is not "."
 - FIX: Große Transporte
@@ -264,7 +262,7 @@ New version of 2moons created by <a href="http://www.xnovarevolution.com.ar/?pag
 - DIV: Diverse Anpassungen am Game
 ',
 
-'RC5.0b6' => 'ShadoX 15.04.10
+    'RC5.0b6' => 'ShadoX 15.04.10
 - ADD: Updated ACP (XG Proyecto 2.9.4)
 - ADD: Facebook Connector Alpha
 - ADD: Diplomatie-System
@@ -300,12 +298,12 @@ New version of 2moons created by <a href="http://www.xnovarevolution.com.ar/?pag
 - DIV: Sicherheit im Game erhöht
 - DIV: Diverse Anpassungen am Game
 ',
-'RC5.0b5' => 'ShadoX 06.03.10
+    'RC5.0b5' => 'ShadoX 06.03.10
 - FIX: Attack
 - DIV: Sicherheit im Game erhöht
 - DIV: Diverse Anpassungen am Game
 ',
-'RC5.0b4' => 'ShadoX 01.03.10
+    'RC5.0b4' => 'ShadoX 01.03.10
 - ADD: Plugin-System v0.4 (Green @ XG Proyecto)
 - ADD: Neu StatBuilder
 - FIX: AKS
@@ -313,7 +311,7 @@ New version of 2moons created by <a href="http://www.xnovarevolution.com.ar/?pag
 - DIV: Diverse Anpassungen am Game
 ',
 
-'RC5.0b3' => 'ShadoX 23.02.10
+    'RC5.0b3' => 'ShadoX 23.02.10
 - ADD: DM BANK
 - ADD: Koords werden nicht mehr in der HoF angezeigt.
 - ADD: Update System BETA
@@ -335,7 +333,7 @@ New version of 2moons created by <a href="http://www.xnovarevolution.com.ar/?pag
 - DIV: Diverse Anpassungen am Game
 - DIV: Update jQuery to 1.4.2
 ',
-'RC5.0b2' => 'ShadoX 20.02.10
+    'RC5.0b2' => 'ShadoX 20.02.10
 - ADD: Accountlöschung w&auml;hrend des U-Modes
 - ADD: UTF-8 Support for Names
 - ADD: Kosten Dunkle Materie
@@ -356,7 +354,7 @@ New version of 2moons created by <a href="http://www.xnovarevolution.com.ar/?pag
 - DIV: Sicherheit im Game erhöht
 - DIV: Diverse Anpassungen am Game
 ',
-'RC5.0b1' => 'ShadoX 02.02.10
+    'RC5.0b1' => 'ShadoX 02.02.10
 - NEW: Search-Engine
 - NEW: LOGIN
 - NEW: Change Name to 2Moons
@@ -429,7 +427,7 @@ New version of 2moons created by <a href="http://www.xnovarevolution.com.ar/?pag
 - DIV: Update jQuery to 1.4.1
 ',
 
-'RC4.2' => 'ShadoX 06.12.09
+    'RC4.2' => 'ShadoX 06.12.09
 - ADD: StatBanner
 - ADD: Sycrogs robots.txt
 - ADD: UserVaild-Funktion einstellbar
@@ -463,7 +461,7 @@ New version of 2moons created by <a href="http://www.xnovarevolution.com.ar/?pag
 - DIV: Diverse Anpassungen am Game
 ',
 
-'RC4.1' => 'ShadoX 23.11.09
+    'RC4.1' => 'ShadoX 23.11.09
 - FIX: Moderration-ACP
 - FIX: Userlöschung
 - FIX: cronjob.php
@@ -475,7 +473,7 @@ New version of 2moons created by <a href="http://www.xnovarevolution.com.ar/?pag
 - DIV: Diverse Anpassungen am Game
 ',
 
-'RC4' => 'ShadoX 13.11.09
+    'RC4' => 'ShadoX 13.11.09
 - ADD: Fleet/Def ins TF einstellbar
 - ADD: Neue Funktion request_var, set_var und msg_handler
 - ADD: Komplett überarbeitetes ACP (XGP 2.9.1)
@@ -528,7 +526,7 @@ New version of 2moons created by <a href="http://www.xnovarevolution.com.ar/?pag
 - DIV: Sicherheit im Game erhöht
 - DIV: Diverse Anpassungen am Game
 ',
-'RC3' => 'ShadoX 18.10.09
+    'RC3' => 'ShadoX 18.10.09
 - ADD: AGB
 - ADD: Rules
 - ADD: Vaild E-Mail Funktion
@@ -549,7 +547,7 @@ New version of 2moons created by <a href="http://www.xnovarevolution.com.ar/?pag
 - DIV: W3C Vaild (Login)
 - DIV: Diverse Anpassungen am Game
 ',
-'RC2' => 'ShadoX 13.10.09
+    'RC2' => 'ShadoX 13.10.09
 - MOD: Lotterie
 - MOD: TS-Overview Mod
 - MOD: Mindestbauzeit einstellbar
@@ -579,3 +577,4 @@ Based on XG Proyect 2.8 on 11.10.09
 ',
 );
 ?>
+

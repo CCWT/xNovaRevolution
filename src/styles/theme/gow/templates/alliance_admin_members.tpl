@@ -36,7 +36,7 @@
 			<td colspan="9">
 			<form action="game.php?page=alliance&amp;mode=admin&amp;edit=members&amp;action=edit&amp;id={$MemberInfo.id}" name="editar_usu_rango" method="POST">
 				{html_options name=newrang options=$Selector selected=$MemberInfo.rank_id}
-				<input type="submit" value="{$al_ok}"> 
+				<input type="submit" value="{$al_ok}">
 			</form>
 			</td>
 		</tr>

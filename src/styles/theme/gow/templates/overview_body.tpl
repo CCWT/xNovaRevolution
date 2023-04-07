@@ -21,11 +21,11 @@
 			<td>{$ov_news}</td><td colspan="3">{$news}</td>
 		</tr>
 		{/if}
-		
+
 		<tr>
         	<td style="white-space: nowrap;">{$ov_admins_online}</td>
         	<td colspan="3">{foreach name=OnlineAdmins key=id item=Name from=$AdminsOnline}{if !$smarty.foreach.OnlineAdmins.first}&nbsp;&bull;&nbsp;{/if}<a href="#" onclick="OpenPopup('game.php?page=messages&amp;mode=write&amp;id={$id}','', 720, 300);return false;">{$Name}</a>{foreachelse}{$ov_no_admins_online}{/foreach}</td>
-        </tr>	
+        </tr>
 		{if $Teamspeak}
 		<tr>
 			<td>{$ov_teamspeak}</td><td colspan="3">{$Teamspeak}</td>
@@ -33,10 +33,10 @@
 		{/if}
         <tr>
         	<th colspan="4">{$ov_events}</th>
-        </tr>	
+        </tr>
  <tr id="fleets" style="display:none;">
          <td colspan="4">
-      </tr>		
+      </tr>
 	     <td colspan="4"><div align="center">
               <div style="background-image: url({$dpath}planeten/{$planetimage}.jpg);background-repeat:no-repeat;height:300px;margin:0px
 auto;position:relative;width:650px;margin-bottom:0px ">

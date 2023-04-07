@@ -21,7 +21,7 @@
 	function Countdown(){
 		if(second == 0)
 			return;
-			
+
 		second--;
 		$('#seconds').text(second);
 	}

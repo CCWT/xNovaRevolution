@@ -31,14 +31,14 @@ pageTracker._trackPageview();
 {/if}
 {if $fb_active}
 <script type="text/javascript" src="http://connect.facebook.net/en_US/all.js"></script>
-<script type="text/javascript">	
+<script type="text/javascript">
 initFB("{$fb_key}");
 </script>
 {/if}
 {if $bgm_active}
-<script type="text/javascript" src="scripts/soundmanager2.js"></script>	
-<script type="text/javascript">	
- 
+<script type="text/javascript" src="scripts/soundmanager2.js"></script>
+<script type="text/javascript">
+
 soundManager.url = 'scripts';
 soundManager.flashVersion = 8;
 soundManager.onready(function() {

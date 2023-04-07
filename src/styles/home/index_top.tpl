@@ -8,10 +8,10 @@
 <meta name="keywords" content="Browsergame, Clone, XNova, Revolution">
 <meta name="medium" content="mult">
 <meta name="description" content='xNova Revolution Browsergame powerd by Brayan Narvaez'>
-</head>	
+</head>
 <body id="login">
 <table>
-<td> 
+<td>
 <a onclick="ajax('?getajax=1&amp;'+'lang={$lang}');" style="cursor:pointer;">{$menu_index}</a> || <a href='{$forum_url}' target='_blank'>{$forum}</a> || {foreach $langs as $lng} <a href="?lang={$lng}"><img src="./styles/images/login/{$lng}.png" alt="" width="16" height="11"></a>{/foreach}
 </td>
 </table>

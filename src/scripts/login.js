@@ -1,12 +1,11 @@
-function ajax(url){
+function ajax(url) {
 	$('#background-content').load(url);
 }
 
-function showRecaptcha(element) 
-{
-	if(IsCaptchaActive == 0)
+function showRecaptcha(element) {
+	if (IsCaptchaActive == 0)
 		return;
-		
+
 	Recaptcha.create(cappublic, 'display_captcha', {
 		theme: 'custom',
 		lang: 'de',
@@ -15,37 +14,34 @@ function showRecaptcha(element)
 	});
 }
 
-function buttonOver(obj)
-{
-	if($(obj).hasClass('button-important'))
+function buttonOver(obj) {
+	if ($(obj).hasClass('button-important'))
 		$(obj).toggleClass('button-important-over');
-	else if($(obj).hasClass('button-normal'))
+	else if ($(obj).hasClass('button-normal'))
 		$(obj).toggleClass('button-normal-over');
 }
 
-function buttonOut(obj){
-	if($(obj).hasClass('button-important'))
+function buttonOut(obj) {
+	if ($(obj).hasClass('button-important'))
 		$(obj).toggleClass('button-important-over');
-	else if($(obj).hasClass('button-normal'))
+	else if ($(obj).hasClass('button-normal'))
 		$(obj).toggleClass('button-normal-over');
 }
 
-function initFB(APIKey)
-{
-	FB.init({appId: APIKey, status: false, cookie: true});
+function initFB(APIKey) {
+	FB.init({ appId: APIKey, status: false, cookie: true });
 }
 
-function loginFB()
-{
-	FB.login(function(response) {
+function loginFB() {
+	FB.login(function (response) {
 		if (response.session) {
 			if (response.perms) {
 				window.location.href = 'index.php?page=facebook';
 			} else {
-			// user is logged in, but did not grant any permissions
+				// user is logged in, but did not grant any permissions
 			}
 		} else {
 			// user is not logged in
 		}
-	}, {perms:'read_stream,publish_stream,offline_access,email'});
+	}, { perms: 'read_stream,publish_stream,offline_access,email' });
 }

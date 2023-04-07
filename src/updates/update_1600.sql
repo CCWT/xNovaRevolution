@@ -1,1 +1,2 @@
-UPDATE prefix_users SET `dpath` = 'gow';
+UPDATE prefix_users
+SET `dpath` = 'gow';

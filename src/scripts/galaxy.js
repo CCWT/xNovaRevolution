@@ -1,29 +1,29 @@
 var strInfo = "";
 
-function doit (order, galaxy, system, planet, planettype, shipcount) {
-	$.post("game.php?page=fleetajax&ajax=1", {mission: order, galaxy: galaxy, system: system, planet: planet, planettype:  planettype, ships: shipcount}, function(data){
-		retVals   	= data.split("|");
-		Message   	= retVals[0];
-		Infos     	= retVals[1];
-		retVals   	= Infos.split(" ");
-		UsedSlots 	= retVals[0];
-		SpyProbes 	= retVals[1];
-		Recyclers 	= retVals[2];
-		GRecyclers	= retVals[3];
-		Missiles  	= retVals[4];
-		retVals  	= Message.split(";");
-		CmdCode  	= retVals[0];
-		strInfo  	= retVals[1];
-		if(CmdCode == 600)
+function doit(order, galaxy, system, planet, planettype, shipcount) {
+	$.post("game.php?page=fleetajax&ajax=1", { mission: order, galaxy: galaxy, system: system, planet: planet, planettype: planettype, ships: shipcount }, function (data) {
+		retVals = data.split("|");
+		Message = retVals[0];
+		Infos = retVals[1];
+		retVals = Infos.split(" ");
+		UsedSlots = retVals[0];
+		SpyProbes = retVals[1];
+		Recyclers = retVals[2];
+		GRecyclers = retVals[3];
+		Missiles = retVals[4];
+		retVals = Message.split(";");
+		CmdCode = retVals[0];
+		strInfo = retVals[1];
+		if (CmdCode == 600)
 			addToTable(status_ok, "success");
 		else
 			addToTable(status_fail, "error");
-		
+
 		changeSlots(UsedSlots);
-		setShips("probes", SpyProbes );
-		setShips("recyclers", Recyclers );
-		setShips("grecyclers", GRecyclers );
-		setShips("missiles", Missiles );
+		setShips("probes", SpyProbes);
+		setShips("recyclers", Recyclers);
+		setShips("grecyclers", GRecyclers);
+		setShips("missiles", Missiles);
 	});
 }
 
@@ -31,7 +31,7 @@ function addToTable(strDataResult, strClass) {
 	var e = document.getElementById('fleetstatusrow');
 	var e2 = document.getElementById('fleetstatustable');
 	e.style.display = '';
-	if(e2.rows.length > MaxFleetSetting) {
+	if (e2.rows.length > MaxFleetSetting) {
 		e2.deleteRow(MaxFleetSetting);
 	}
 	var row = e2.insertRow(0);
@@ -53,7 +53,7 @@ function changeSlots(add) {
 	$('#slots').text(add);
 }
 function setShips(ship, count) {
-	$('#'+ship).text(number_format(count));
+	$('#' + ship).text(number_format(count));
 }
 
 function galaxy_submit(value) {

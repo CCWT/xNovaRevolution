@@ -3,7 +3,7 @@
 {include file="left_menu.tpl"}
 <div id="content" class="content">
 	{if $ExtraDMList}
-    <table align="top" width="530">	
+    <table align="top" width="530">
 	    <tr>
 			<center><img src="./styles/theme/gow/adds/oficiales.png"></center>
 		</tr>
@@ -45,7 +45,7 @@
 	{/if}
 	{if $OfficierList}
 		{foreach item=OfficierInfo from=$OfficierList}
-		
+
 		{/foreach}
 	{/if}
 </div>

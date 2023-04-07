@@ -10,7 +10,7 @@
 		<th width="40%">{$subject}</th>
 		<th width="15%">{$status}</th>
 		<th width="25%">{$ticket_posted}</th>
-	</tr>	
+	</tr>
 	{foreach item=Ticket from=$tickets.open}
 	<tr><td>{$Ticket.id}</td><td>{$Ticket.username}</td><td><a href="?page=support&amp;action=detail&amp;id={$Ticket.id}">{$Ticket.subject}</a></td><td>{$Ticket.status}</td><td>{$Ticket.date}</td></tr>
 	{/foreach}

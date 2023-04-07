@@ -18,7 +18,7 @@
  * This code is covered under the LGPL licence, and can be used however you want :)
  * Be kind and share any decent code changes.
  */
- 
+
 var libbcmath = {
     PLUS: '+',
     MINUS: '-',
@@ -28,20 +28,20 @@ var libbcmath = {
     /**
      * Basic number structure
      */
-    bc_num: function() {
+    bc_num: function () {
         this.n_sign = null; // sign
         this.n_len = null;  /* (int) The number of digits before the decimal point. */
         this.n_scale = null; /* (int) The number of digits after the decimal point. */
         //this.n_refs = null; /* (int) The number of pointers to this number. */
         //this.n_text = null; /* ?? Linked list for available list. */
         this.n_value = null;  /* array as value, where 1.23 = [1,2,3] */
-        this.toString = function() {
+        this.toString = function () {
             var r, tmp;
-            tmp=this.n_value.join('');
-            
+            tmp = this.n_value.join('');
+
             // add minus sign (if applicable) then add the integer part
             r = ((this.n_sign == libbcmath.PLUS) ? '' : this.n_sign) + tmp.substr(0, this.n_len);
-            
+
             // if decimal places, add a . and the decimal part
             if (this.n_scale > 0) {
                 r += '.' + tmp.substr(this.n_len, this.n_scale);
@@ -49,32 +49,32 @@ var libbcmath = {
             return r;
         };
     },
-    
+
     /**
      * @param int length
      * @param int scale
      * @return bc_num
      */
-    bc_new_num: function(length, scale) {
+    bc_new_num: function (length, scale) {
         var temp; // bc_num
-        temp            = new libbcmath.bc_num();
-        temp.n_sign     = libbcmath.PLUS;
-        temp.n_len      = length;
-        temp.n_scale    = scale;
-        temp.n_value    = libbcmath.safe_emalloc(1, length+scale, 0);
-        libbcmath.memset(temp.n_value, 0, 0, length+scale);
+        temp = new libbcmath.bc_num();
+        temp.n_sign = libbcmath.PLUS;
+        temp.n_len = length;
+        temp.n_scale = scale;
+        temp.n_value = libbcmath.safe_emalloc(1, length + scale, 0);
+        libbcmath.memset(temp.n_value, 0, 0, length + scale);
         return temp;
     },
-    
-    safe_emalloc: function(size, len, extra) {
+
+    safe_emalloc: function (size, len, extra) {
         return Array((size * len) + extra);
     },
 
     /**
      * Create a new number
      */
-    bc_init_num: function() {
-        return new libbcmath.bc_new_num(1,0);
+    bc_init_num: function () {
+        return new libbcmath.bc_new_num(1, 0);
 
     },
 
@@ -85,44 +85,44 @@ var libbcmath = {
             num.n_len--;
         }
     },
-    
+
     /**
      * Convert to bc_num detecting scale
      */
-    php_str2num: function(str) {
+    php_str2num: function (str) {
         var p;
         p = str.indexOf('.');
-        if (p==-1) {
+        if (p == -1) {
             return libbcmath.bc_str2num(str, 0);
         } else {
-            return libbcmath.bc_str2num(str, (str.length-p));
+            return libbcmath.bc_str2num(str, (str.length - p));
         }
 
     },
-    
-    CH_VAL: function(c) {
+
+    CH_VAL: function (c) {
         return c - '0'; //??
     },
-    
-    BCD_CHAR: function(d) {
+
+    BCD_CHAR: function (d) {
         return d + '0'; // ??
     },
-    
-    isdigit: function(c) {
-        return (isNaN(parseInt(c,10)) ? false : true);
+
+    isdigit: function (c) {
+        return (isNaN(parseInt(c, 10)) ? false : true);
     },
-    
-    bc_str2num: function(str_in, scale) {
-        var str,num, ptr, digits, strscale, zero_int, nptr;
+
+    bc_str2num: function (str_in, scale) {
+        var str, num, ptr, digits, strscale, zero_int, nptr;
         // remove any non-expected characters
         /* Check for valid number and count digits. */
 
-        str=str_in.split(''); // convert to array
+        str = str_in.split(''); // convert to array
         ptr = 0;    // str
         digits = 0;
         strscale = 0;
         zero_int = false;
-        if ( (str[ptr] === '+') || (str[ptr] === '-'))  {
+        if ((str[ptr] === '+') || (str[ptr] === '-')) {
             ptr++;  /* Sign */
         }
         while (str[ptr] === '0') {
@@ -133,7 +133,7 @@ var libbcmath = {
             ptr++;
             digits++;    /* digits */
         }
-        
+
         if (str[ptr] === '.') {
             ptr++;            /* decimal point */
         }
@@ -143,10 +143,10 @@ var libbcmath = {
             strscale++;    /* digits */
         }
 
-        if ((str[ptr]) || (digits+strscale === 0)) {
+        if ((str[ptr]) || (digits + strscale === 0)) {
             // invalid number, return 0
             return libbcmath.bc_init_num();
-              //*num = bc_copy_num (BCG(_zero_));
+            //*num = bc_copy_num (BCG(_zero_));
         }
 
         /* Adjust numbers and allocate storage and initialize fields. */
@@ -180,7 +180,7 @@ var libbcmath = {
             num.n_value[nptr++] = 0;
             digits = 0;
         }
-        for (;digits > 0; digits--) {
+        for (; digits > 0; digits--) {
             num.n_value[nptr++] = libbcmath.CH_VAL(str[ptr++]);
             //*nptr++ = CH_VAL(*ptr++);
         }
@@ -188,7 +188,7 @@ var libbcmath = {
         /* Build the fractional part. */
         if (strscale > 0) {
             ptr++;  /* skip the decimal point! */
-            for (;strscale > 0; strscale--) {
+            for (; strscale > 0; strscale--) {
                 num.n_value[nptr++] = libbcmath.CH_VAL(str[ptr++]);
             }
         }
@@ -196,77 +196,77 @@ var libbcmath = {
         return num;
     },
 
-    cint: function(v) {
-        if (typeof(v) == 'undefined') {
+    cint: function (v) {
+        if (typeof (v) == 'undefined') {
             v = 0;
         }
-        var x=parseInt(v,10);
+        var x = parseInt(v, 10);
         if (isNaN(x)) {
             x = 0;
         }
         return x;
     },
-    
+
     /**
      * Basic min function
      * @param int
      * @param int
      */
-    MIN: function(a, b) {
+    MIN: function (a, b) {
         return ((a > b) ? b : a);
     },
-    
+
     /**
      * Basic max function
      * @param int
      * @param int
      */
-    MAX: function(a, b) {
+    MAX: function (a, b) {
         return ((a > b) ? a : b);
     },
-    
+
     /**
      * Basic odd function
      * @param int
      * @param int
      */
-    ODD: function(a) {
+    ODD: function (a) {
         return (a & 1);
     },
-    
+
     /**
      * replicate c function
      * @param array     return (by reference)
      * @param string    char to fill
      * @param int       length to fill
      */
-    memset: function(r, ptr, chr, len) {
+    memset: function (r, ptr, chr, len) {
         var i;
-        for (i=0;i<len;i++) {
-            r[ptr+i] = chr;
+        for (i = 0; i < len; i++) {
+            r[ptr + i] = chr;
         }
     },
-    
+
     /**
      * Replacement c function
      * Obviously can't work like c does, so we've added an "offset" param so you could do memcpy(dest+1, src, len) as memcpy(dest, 1, src, len)
      * Also only works on arrays
      */
-    memcpy: function(dest, ptr, src, srcptr, len) {
+    memcpy: function (dest, ptr, src, srcptr, len) {
         var i;
-        for (i=0;i<len;i++) {
-            dest[ptr+i]=src[srcptr+i];
+        for (i = 0; i < len; i++) {
+            dest[ptr + i] = src[srcptr + i];
         }
         return true;
     },
-    
-    
+
+
     /**
      * Determine if the number specified is zero or not
      * @param bc_num num    number to check
      * @return boolean      true when zero, false when not zero.
      */
-    bc_is_zero: function(num) {
+    bc_is_zero: function (num) {
         var count; // int
         var nptr; // int
 
@@ -288,8 +288,8 @@ var libbcmath = {
             return true;
         }
     },
-    
-    bc_out_of_memory: function() {
+
+    bc_out_of_memory: function () {
         throw new Error("(BC) Out of memory");
     }
 };
@@ -306,7 +306,7 @@ var libbcmath = {
  * @pram int scale_min
  * @return bc_num
  */
-libbcmath.bc_add = function(n1, n2, scale_min) {
+libbcmath.bc_add = function (n1, n2, scale_min) {
     var sum, cmp_res, res_scale;
 
     if (n1.n_sign === n2.n_sign) {
@@ -321,15 +321,15 @@ libbcmath.bc_add = function(n1, n2, scale_min) {
                 sum = libbcmath._bc_do_sub(n2, n1, scale_min);
                 sum.n_sign = n2.n_sign;
                 break;
-                
-            case  0:
+
+            case 0:
                 /* They are equal! return zero with the correct scale! */
                 res_scale = libbcmath.MAX(scale_min, libbcmath.MAX(n1.n_scale, n2.n_scale));
                 sum = libbcmath.bc_new_num(1, res_scale);
-                libbcmath.memset(sum.n_value, 0, 0, res_scale+1);
+                libbcmath.memset(sum.n_value, 0, 0, res_scale + 1);
                 break;
-                
-            case  1:
+
+            case 1:
                 /* n2 is less than n1, subtract n2 from n1. */
                 sum = libbcmath._bc_do_sub(n1, n2, scale_min);
                 sum.n_sign = n1.n_sign;
@@ -343,8 +343,8 @@ libbcmath.bc_add = function(n1, n2, scale_min) {
  * @param bc_num n2
  * @return int -1, 0, 1  (n1 < n2, ==, n1 > n2)
  */
-libbcmath.bc_compare = function(n1, n2) {
-    return libbcmath._bc_do_compare (n1, n2, true, false);
+libbcmath.bc_compare = function (n1, n2) {
+    return libbcmath._bc_do_compare(n1, n2, true, false);
 };
 
 /**
@@ -354,7 +354,7 @@ libbcmath.bc_compare = function(n1, n2) {
  * @param boolean ignore_last
  * @return -1, 0, 1 (see bc_compare)
  */
-libbcmath._bc_do_compare = function(n1, n2, use_sign, ignore_last) {
+libbcmath._bc_do_compare = function (n1, n2, use_sign, ignore_last) {
     var n1ptr, n2ptr; // int
     var count;    // int
 
@@ -403,7 +403,7 @@ libbcmath._bc_do_compare = function(n1, n2, use_sign, ignore_last) {
     }
 
     if (count !== 0) {
-        if (n1.n_value[n1ptr] > n2.n_value[n2ptr])  {
+        if (n1.n_value[n1ptr] > n2.n_value[n2ptr]) {
             /* Magnitude of n1 > n2. */
             if (!use_sign || n1.n_sign == libbcmath.PLUS) {
                 return (1);
@@ -423,7 +423,7 @@ libbcmath._bc_do_compare = function(n1, n2, use_sign, ignore_last) {
     /* They are equal up to the last part of the equal part of the fraction. */
     if (n1.n_scale != n2.n_scale) {
         if (n1.n_scale > n2.n_scale) {
-            for (count =(n1.n_scale - n2.n_scale); count>0; count--) {
+            for (count = (n1.n_scale - n2.n_scale); count > 0; count--) {
                 if (n1.n_value[n1ptr++] !== 0) {
                     /* Magnitude of n1 > n2. */
                     if (!use_sign || n1.n_sign == libbcmath.PLUS) {
@@ -434,7 +434,7 @@ libbcmath._bc_do_compare = function(n1, n2, use_sign, ignore_last) {
                 }
             }
         } else {
-            for (count = (n2.n_scale - n1.n_scale); count>0; count--) {
+            for (count = (n2.n_scale - n1.n_scale); count > 0; count--) {
                 if (n2.n_value[n2ptr++] !== 0) {
                     /* Magnitude of n1 < n2. */
                     if (!use_sign || n1.n_sign == libbcmath.PLUS) {
@@ -462,19 +462,19 @@ libbcmath._bc_do_compare = function(n1, n2, use_sign, ignore_last) {
  * @param int digit
  * @param array result  (pass by ref)
  */
-libbcmath._one_mult = function(num, n_ptr, size, digit, result, r_ptr) {
+libbcmath._one_mult = function (num, n_ptr, size, digit, result, r_ptr) {
     var carry, value; // int
     var nptr, rptr; // int pointers
 
-     if (digit === 0) {
+    if (digit === 0) {
         libbcmath.memset(result, 0, 0, size);   //memset (result, 0, size);
     } else {
         if (digit == 1) {
             libbcmath.memcpy(result, r_ptr, num, n_ptr, size); //memcpy (result, num, size);
         } else {
             /*  Initialize */
-            nptr = n_ptr+size-1; //nptr = (unsigned char *) (num+size-1);
-            rptr = r_ptr+size-1; //rptr = (unsigned char *) (result+size-1);
+            nptr = n_ptr + size - 1; //nptr = (unsigned char *) (num+size-1);
+            rptr = r_ptr + size - 1; //rptr = (unsigned char *) (result+size-1);
             carry = 0;
 
             while (size-- > 0) {
@@ -498,7 +498,7 @@ libbcmath._one_mult = function(num, n_ptr, size, digit, result, r_ptr) {
    digits after the decimal point is SCALE. It returns -1 if division
    by zero is tried.  The algorithm is found in Knuth Vol 2. p237. */
 
-libbcmath.bc_divide = function(n1, n2, scale) {
+libbcmath.bc_divide = function (n1, n2, scale) {
     var quot;   // bc_num return
     var qval; // bc_num
     var num1, num2; // string
@@ -515,7 +515,7 @@ libbcmath.bc_divide = function(n1, n2, scale) {
     if (libbcmath.bc_is_zero(n2)) {
         return -1;
     }
-    
+
     /* Test for zero divide by anything (return zero) */
     if (libbcmath.bc_is_zero(n1)) {
         return libbcmath.bc_new_num(1, scale);
@@ -562,8 +562,8 @@ libbcmath.bc_divide = function(n1, n2, scale) {
     if (num1 === null) {
         libbcmath.bc_out_of_memory();
     }
-    libbcmath.memset(num1, 0, 0, n1.n_len+n1.n_scale+extra+2); //memset (num1, 0, n1->n_len+n1->n_scale+extra+2);
-    libbcmath.memcpy(num1, 1, n1.n_value, 0, n1.n_len+n1.n_scale); //memcpy (num1+1, n1.n_value, n1.n_len+n1.n_scale);
+    libbcmath.memset(num1, 0, 0, n1.n_len + n1.n_scale + extra + 2); //memset (num1, 0, n1->n_len+n1->n_scale+extra+2);
+    libbcmath.memcpy(num1, 1, n1.n_value, 0, n1.n_len + n1.n_scale); //memcpy (num1+1, n1.n_value, n1.n_len+n1.n_scale);
 
     len2 = n2.n_len + scale2;  // len2 = n2->n_len + scale2;
     num2 = libbcmath.safe_emalloc(1, len2, 1);//num2 = (unsigned char *) safe_emalloc (1, len2, 1);
@@ -573,27 +573,27 @@ libbcmath.bc_divide = function(n1, n2, scale) {
     libbcmath.memcpy(num2, 0, n2.n_value, 0, len2);  //memcpy (num2, n2.n_value, len2);
     num2[len2] = 0;   // *(num2+len2) = 0;
     n2ptr = 0; //n2ptr = num2;
-    
+
     while (num2[n2ptr] === 0) {   // while (*n2ptr == 0)
         n2ptr++;
         len2--;
     }
 
     /* Calculate the number of quotient digits. */
-    if (len2 > len1+scale) {
-        qdigits = scale+1;
+    if (len2 > len1 + scale) {
+        qdigits = scale + 1;
         zero = true;
     } else {
         zero = false;
-        if (len2>len1) {
-            qdigits = scale+1;      /* One for the zero integer part. */
+        if (len2 > len1) {
+            qdigits = scale + 1;      /* One for the zero integer part. */
         } else {
-            qdigits = len1-len2+scale+1;
+            qdigits = len1 - len2 + scale + 1;
         }
     }
 
     /* Allocate and zero the storage for the quotient. */
-    qval = libbcmath.bc_new_num(qdigits-scale,scale);   //qval = bc_new_num (qdigits-scale,scale);
+    qval = libbcmath.bc_new_num(qdigits - scale, scale);   //qval = bc_new_num (qdigits-scale,scale);
     libbcmath.memset(qval.n_value, 0, 0, qdigits); //memset (qval->n_value, 0, qdigits);
 
     /* Allocate storage for the temporary storage mval. */
@@ -601,42 +601,42 @@ libbcmath.bc_divide = function(n1, n2, scale) {
     if (mval === null) {
         libbcmath.bc_out_of_memory();
     }
-    
+
     /* Now for the full divide algorithm. */
     if (!zero) {
         /* Normalize */
         //norm = libbcmath.cint(10 / (libbcmath.cint(n2.n_value[n2ptr]) + 1)); //norm =  10 / ((int)*n2ptr + 1);
         norm = Math.floor(10 / (n2.n_value[n2ptr] + 1)); //norm =  10 / ((int)*n2ptr + 1);
         if (norm != 1) {
-            libbcmath._one_mult(num1, 0, len1+scale1+extra+1, norm, num1, 0); //libbcmath._one_mult(num1, len1+scale1+extra+1, norm, num1);
+            libbcmath._one_mult(num1, 0, len1 + scale1 + extra + 1, norm, num1, 0); //libbcmath._one_mult(num1, len1+scale1+extra+1, norm, num1);
             libbcmath._one_mult(n2.n_value, n2ptr, len2, norm, n2.n_value, n2ptr); //libbcmath._one_mult(n2ptr, len2, norm, n2ptr);
 
             // @CHECK Is the pointer affected by the call? if so, maybe need to adjust points on return?
-            
+
         }
 
         /* Initialize divide loop. */
         qdig = 0;
         if (len2 > len1) {
-            qptr = len2-len1; //qptr = (unsigned char *) qval.n_value+len2-len1;
-        }  else {
+            qptr = len2 - len1; //qptr = (unsigned char *) qval.n_value+len2-len1;
+        } else {
             qptr = 0; //qptr = (unsigned char *) qval.n_value;
         }
 
         /* Loop */
-        while (qdig <= len1+scale-len2) {
+        while (qdig <= len1 + scale - len2) {
             /* Calculate the quotient digit guess. */
             if (n2.n_value[n2ptr] == num1[qdig]) {
                 qguess = 9;
             } else {
-                qguess = Math.floor((num1[qdig]*10 + num1[qdig+1]) / n2.n_value[n2ptr]);
+                qguess = Math.floor((num1[qdig] * 10 + num1[qdig + 1]) / n2.n_value[n2ptr]);
             }
             /* Test qguess. */
 
-            if (n2.n_value[n2ptr+1]*qguess > (num1[qdig]*10 + num1[qdig+1] - n2.n_value[n2ptr]*qguess)*10 + num1[qdig+2]) { //if (n2ptr[1]*qguess > (num1[qdig]*10 + num1[qdig+1] - *n2ptr*qguess)*10 + num1[qdig+2]) {
+            if (n2.n_value[n2ptr + 1] * qguess > (num1[qdig] * 10 + num1[qdig + 1] - n2.n_value[n2ptr] * qguess) * 10 + num1[qdig + 2]) { //if (n2ptr[1]*qguess > (num1[qdig]*10 + num1[qdig+1] - *n2ptr*qguess)*10 + num1[qdig+2]) {
                 qguess--;
                 /* And again. */
-                if (n2.n_value[n2ptr+1]*qguess > (num1[qdig]*10 + num1[qdig+1] - n2.n_value[n2ptr]*qguess)*10 + num1[qdig+2]) { //if (n2ptr[1]*qguess > (num1[qdig]*10 + num1[qdig+1] - *n2ptr*qguess)*10 + num1[qdig+2])
+                if (n2.n_value[n2ptr + 1] * qguess > (num1[qdig] * 10 + num1[qdig + 1] - n2.n_value[n2ptr] * qguess) * 10 + num1[qdig + 2]) { //if (n2ptr[1]*qguess > (num1[qdig]*10 + num1[qdig+1] - *n2ptr*qguess)*10 + num1[qdig+2])
                     qguess--;
                 }
             }
@@ -647,12 +647,12 @@ libbcmath.bc_divide = function(n1, n2, scale) {
                 mval[0] = 0; //*mval = 0; // @CHECK is this to fix ptr2 < 0?
                 libbcmath._one_mult(n2.n_value, n2ptr, len2, qguess, mval, 1); //_one_mult (n2ptr, len2, qguess, mval+1); // @CHECK
 
-                ptr1 = qdig+len2; //(unsigned char *) num1+qdig+len2;
+                ptr1 = qdig + len2; //(unsigned char *) num1+qdig+len2;
                 ptr2 = len2; //(unsigned char *) mval+len2;
-                
+
                 // @CHECK: Does a negative pointer return null?
                 //         ptr2 can be < 0 here as ptr1 = len2, thus count < len2+1 will always fail ?
-                for (count = 0; count < len2+1; count++) {
+                for (count = 0; count < len2 + 1; count++) {
                     if (ptr2 < 0) {
                         //val = libbcmath.cint(num1[ptr1]) - 0 - borrow;    //val = (int) *ptr1 - (int) *ptr2-- - borrow;
                         val = num1[ptr1] - 0 - borrow;    //val = (int) *ptr1 - (int) *ptr2-- - borrow;
@@ -673,8 +673,8 @@ libbcmath.bc_divide = function(n1, n2, scale) {
             /* Test for negative result. */
             if (borrow == 1) {
                 qguess--;
-                ptr1 = qdig+len2; //(unsigned char *) num1+qdig+len2;
-                ptr2 = len2-1; //(unsigned char *) n2ptr+len2-1;
+                ptr1 = qdig + len2; //(unsigned char *) num1+qdig+len2;
+                ptr2 = len2 - 1; //(unsigned char *) n2ptr+len2-1;
                 carry = 0;
                 for (count = 0; count < len2; count++) {
                     if (ptr2 < 0) {
@@ -699,18 +699,18 @@ libbcmath.bc_divide = function(n1, n2, scale) {
             }
 
             /* We now know the quotient digit. */
-            qval.n_value[qptr++] =  qguess;  //*qptr++ =  qguess;
+            qval.n_value[qptr++] = qguess;  //*qptr++ =  qguess;
             qdig++;
         }
     }
 
     /* Clean up and return the number. */
-    qval.n_sign = ( n1.n_sign == n2.n_sign ? libbcmath.PLUS : libbcmath.MINUS );
+    qval.n_sign = (n1.n_sign == n2.n_sign ? libbcmath.PLUS : libbcmath.MINUS);
     if (libbcmath.bc_is_zero(qval)) {
         qval.n_sign = libbcmath.PLUS;
     }
     libbcmath._bc_rm_leading_zeros(qval);
-    
+
     return qval;
 
     //return 0;    /* Everything is OK. */
@@ -734,7 +734,7 @@ libbcmath.bc_divide = function(n1, n2, scale) {
  * @param int scale_min
  * @return bc_num
  */
-libbcmath._bc_do_add = function(n1, n2, scale_min) {
+libbcmath._bc_do_add = function (n1, n2, scale_min) {
     var sum;  // bc_num
     var sum_scale, sum_digits; // int
     var n1ptr, n2ptr, sumptr; // int
@@ -743,9 +743,9 @@ libbcmath._bc_do_add = function(n1, n2, scale_min) {
 
 
     // Prepare sum.
-    sum_scale   = libbcmath.MAX(n1.n_scale, n2.n_scale);
-    sum_digits  = libbcmath.MAX(n1.n_len, n2.n_len) + 1;
-    sum         = libbcmath.bc_new_num(sum_digits, libbcmath.MAX(sum_scale, scale_min));
+    sum_scale = libbcmath.MAX(n1.n_scale, n2.n_scale);
+    sum_digits = libbcmath.MAX(n1.n_len, n2.n_len) + 1;
+    sum = libbcmath.bc_new_num(sum_digits, libbcmath.MAX(sum_scale, scale_min));
 
 
     /* Not needed?
@@ -768,14 +768,14 @@ libbcmath._bc_do_add = function(n1, n2, scale_min) {
     if (n1bytes != n2bytes) {
         if (n1bytes > n2bytes) {
             // n1 has more dp then n2
-            while (n1bytes>n2bytes) {
+            while (n1bytes > n2bytes) {
                 sum.n_value[sumptr--] = n1.n_value[n1ptr--];
                 // *sumptr-- = *n1ptr--;
                 n1bytes--;
             }
         } else {
             // n2 has more dp then n1
-            while (n2bytes>n1bytes) {
+            while (n2bytes > n1bytes) {
                 sum.n_value[sumptr--] = n2.n_value[n2ptr--];
                 // *sumptr-- = *n2ptr--;
                 n2bytes--;
@@ -792,7 +792,7 @@ libbcmath._bc_do_add = function(n1, n2, scale_min) {
         // add the two numbers together
         tmp = n1.n_value[n1ptr--] + n2.n_value[n2ptr--] + carry;
         // *sumptr = *n1ptr-- + *n2ptr-- + carry;
-        
+
         // check if they are >= 10 (impossible to be more then 18)
         if (tmp >= libbcmath.BASE) {
             carry = 1;
@@ -819,7 +819,7 @@ libbcmath._bc_do_add = function(n1, n2, scale_min) {
             } else {
                 carry = 0;
             }
-            sum.n_value[sumptr--]=tmp;
+            sum.n_value[sumptr--] = tmp;
         }
     } else {
         // n1 is bigger then n2..
@@ -833,7 +833,7 @@ libbcmath._bc_do_add = function(n1, n2, scale_min) {
             } else {
                 carry = 0;
             }
-            sum.n_value[sumptr--]=tmp;
+            sum.n_value[sumptr--] = tmp;
         }
     }
 
@@ -844,7 +844,7 @@ libbcmath._bc_do_add = function(n1, n2, scale_min) {
     }
 
     // Adjust sum and return.
-    libbcmath._bc_rm_leading_zeros (sum);
+    libbcmath._bc_rm_leading_zeros(sum);
     return sum;
 };
 
@@ -866,7 +866,7 @@ libbcmath._bc_do_add = function(n1, n2, scale_min) {
  * @param int scale_min
  * @return bc_num
  */
-libbcmath._bc_do_sub = function(n1, n2, scale_min) {
+libbcmath._bc_do_sub = function (n1, n2, scale_min) {
     var diff; //bc_num
     var diff_scale, diff_len; // int
     var min_scale, min_len; // int
@@ -874,11 +874,11 @@ libbcmath._bc_do_sub = function(n1, n2, scale_min) {
     var borrow, count, val; // int
 
     // Allocate temporary storage.
-    diff_len    = libbcmath.MAX(n1.n_len,   n2.n_len);
-    diff_scale  = libbcmath.MAX(n1.n_scale, n2.n_scale);
-    min_len     = libbcmath.MIN(n1.n_len,   n2.n_len);
-    min_scale   = libbcmath.MIN(n1.n_scale, n2.n_scale);
-    diff        = libbcmath.bc_new_num(diff_len, libbcmath.MAX(diff_scale, scale_min));
+    diff_len = libbcmath.MAX(n1.n_len, n2.n_len);
+    diff_scale = libbcmath.MAX(n1.n_scale, n2.n_scale);
+    min_len = libbcmath.MIN(n1.n_len, n2.n_len);
+    min_scale = libbcmath.MIN(n1.n_scale, n2.n_scale);
+    diff = libbcmath.bc_new_num(diff_len, libbcmath.MAX(diff_scale, scale_min));
 
     /* Not needed?
     // Zero extra digits made by scale_min.
@@ -891,9 +891,9 @@ libbcmath._bc_do_sub = function(n1, n2, scale_min) {
     */
 
     // Initialize the subtract.
-    n1ptr   = (n1.n_len + n1.n_scale -1);
-    n2ptr   = (n2.n_len + n2.n_scale -1);
-    diffptr = (diff_len + diff_scale -1);
+    n1ptr = (n1.n_len + n1.n_scale - 1);
+    n2ptr = (n2.n_len + n2.n_scale - 1);
+    diffptr = (diff_len + diff_scale - 1);
 
     // Subtract the numbers.
     borrow = 0;
@@ -967,7 +967,7 @@ libbcmath.MUL_SMALL_DIGITS = (libbcmath.MUL_BASE_DIGITS / 4); //#define MUL_SMAL
  * @param n2 bc_num
  * @param scale [int] optional
  */
-libbcmath.bc_multiply = function(n1, n2, scale) {
+libbcmath.bc_multiply = function (n1, n2, scale) {
     var pval; // bc_num
     var len1, len2; // int
     var full_scale, prod_scale; // int
@@ -976,16 +976,16 @@ libbcmath.bc_multiply = function(n1, n2, scale) {
     len1 = n1.n_len + n1.n_scale;
     len2 = n2.n_len + n2.n_scale;
     full_scale = n1.n_scale + n2.n_scale;
-    prod_scale = libbcmath.MIN(full_scale,libbcmath.MAX(scale,libbcmath.MAX(n1.n_scale, n2.n_scale)));
+    prod_scale = libbcmath.MIN(full_scale, libbcmath.MAX(scale, libbcmath.MAX(n1.n_scale, n2.n_scale)));
 
     //pval = libbcmath.bc_init_num(); // allow pass by ref
     // Do the multiply
-    pval = libbcmath._bc_rec_mul (n1, len1, n2, len2, full_scale);
+    pval = libbcmath._bc_rec_mul(n1, len1, n2, len2, full_scale);
 
     // Assign to prod and clean up the number.
-    pval.n_sign  = ( n1.n_sign == n2.n_sign ? libbcmath.PLUS : libbcmath.MINUS );
+    pval.n_sign = (n1.n_sign == n2.n_sign ? libbcmath.PLUS : libbcmath.MINUS);
     //pval.n_value = pval.n_ptr; // @FIX
-    pval.n_len   = len2 + len1 + 1 - full_scale;
+    pval.n_len = len2 + len1 + 1 - full_scale;
     pval.n_scale = prod_scale;
     libbcmath._bc_rm_leading_zeros(pval);
     if (libbcmath.bc_is_zero(pval)) {
@@ -995,7 +995,7 @@ libbcmath.bc_multiply = function(n1, n2, scale) {
     return pval;
 };
 
-libbcmath.new_sub_num = function(length, scale, value) {
+libbcmath.new_sub_num = function (length, scale, value) {
     var temp = new libbcmath.bc_num();
     temp.n_sign = libbcmath.PLUS;
     temp.n_len = length;
@@ -1004,32 +1004,32 @@ libbcmath.new_sub_num = function(length, scale, value) {
     return temp;
 };
 
-libbcmath._bc_simp_mul = function(n1, n1len, n2, n2len, full_scale) {
+libbcmath._bc_simp_mul = function (n1, n1len, n2, n2len, full_scale) {
     var prod;   // bc_num
     var n1ptr, n2ptr, pvptr; // char *n1ptr, *n2ptr, *pvptr;
     var n1end, n2end; //char *n1end, *n2end;        /* To the end of n1 and n2. */
     var indx, sum, prodlen; //int indx, sum, prodlen;
 
-    prodlen = n1len+n2len+1;
+    prodlen = n1len + n2len + 1;
 
     prod = libbcmath.bc_new_num(prodlen, 0);
 
-    n1end = n1len-1; //(char *) (n1->n_value + n1len - 1);
-    n2end = n2len-1; //(char *) (n2->n_value + n2len - 1);
-    pvptr = prodlen-1; //(char *) ((*prod)->n_value + prodlen - 1);
+    n1end = n1len - 1; //(char *) (n1->n_value + n1len - 1);
+    n2end = n2len - 1; //(char *) (n2->n_value + n2len - 1);
+    pvptr = prodlen - 1; //(char *) ((*prod)->n_value + prodlen - 1);
     sum = 0;
 
     // Here is the loop...
-    for (indx = 0; indx < prodlen-1; indx++) {
-        n1ptr = n1end - libbcmath.MAX(0, indx-n2len+1); //(char *) (n1end - MAX(0, indx-n2len+1));
-        n2ptr = n2end - libbcmath.MIN(indx, n2len-1); //(char *) (n2end - MIN(indx, n2len-1));
+    for (indx = 0; indx < prodlen - 1; indx++) {
+        n1ptr = n1end - libbcmath.MAX(0, indx - n2len + 1); //(char *) (n1end - MAX(0, indx-n2len+1));
+        n2ptr = n2end - libbcmath.MIN(indx, n2len - 1); //(char *) (n2end - MIN(indx, n2len-1));
         while ((n1ptr >= 0) && (n2ptr <= n2end)) {
             sum += n1.n_value[n1ptr--] * n2.n_value[n2ptr++];   //sum += *n1ptr-- * *n2ptr++;
         }
         prod.n_value[pvptr--] = Math.floor(sum % libbcmath.BASE); //*pvptr-- = sum % BASE;
         sum = Math.floor(sum / libbcmath.BASE); //sum = sum / BASE;
     }
-    prod.n_value[pvptr]=sum; //*pvptr = sum;
+    prod.n_value[pvptr] = sum; //*pvptr = sum;
     return prod;
 };
 
@@ -1038,7 +1038,7 @@ libbcmath._bc_simp_mul = function(n1, n1len, n2, n2len, full_scale) {
    multiply algorithm.  Note: if sub is called, accum must
    be larger that what is being subtracted.  Also, accum and val
    must have n_scale = 0.  (e.g. they must look like integers. *) */
-libbcmath._bc_shift_addsub = function(accum, val, shift, sub) {
+libbcmath._bc_shift_addsub = function (accum, val, shift, sub) {
     var accp, valp; //signed char *accp, *valp;
     var count, carry; //int  count, carry;
 
@@ -1046,9 +1046,9 @@ libbcmath._bc_shift_addsub = function(accum, val, shift, sub) {
     if (val.n_value[0] === 0) {
         count--;
     }
-    
+
     //assert (accum->n_len+accum->n_scale >= shift+count);
-    if (!(accum.n_len+accum.n_scale >= shift+count)) {
+    if (!(accum.n_len + accum.n_scale >= shift + count)) {
         throw new Error("len + scale < shift + count"); // ?? I think thats what assert does :)
     }
 
@@ -1081,7 +1081,7 @@ libbcmath._bc_shift_addsub = function(accum, val, shift, sub) {
         // Addition
         while (count--) {
             accum.n_value[accp] += val.n_value[valp--] + carry; //*accp += *valp-- + carry;
-            if (accum.n_value[accp] > (libbcmath.BASE-1)) {//if (*accp > (BASE-1))
+            if (accum.n_value[accp] > (libbcmath.BASE - 1)) {//if (*accp > (BASE-1))
                 carry = 1;
                 accum.n_value[accp--] -= libbcmath.BASE; //*accp-- -= BASE;
             } else {
@@ -1091,7 +1091,7 @@ libbcmath._bc_shift_addsub = function(accum, val, shift, sub) {
         }
         while (carry) {
             accum.n_value[accp] += carry; //*accp += carry;
-            if (accum.n_value[accp] > (libbcmath.BASE-1)) { //if (*accp > (BASE-1))
+            if (accum.n_value[accp] > (libbcmath.BASE - 1)) { //if (*accp > (BASE-1))
                 accum.n_value[accp--] -= libbcmath.BASE; //*accp-- -= BASE;
             } else {
                 carry = 0;
@@ -1118,27 +1118,27 @@ libbcmath._bc_rec_mul = function (u, ulen, v, vlen, full_scale) {
     var d1len, d2len;   // int
 
     // Base case?
-    if ( (ulen+vlen) < libbcmath.MUL_BASE_DIGITS || ulen < libbcmath.MUL_SMALL_DIGITS || vlen < libbcmath.MUL_SMALL_DIGITS ) {
-        return libbcmath._bc_simp_mul(u, ulen, v, vlen,  full_scale);
+    if ((ulen + vlen) < libbcmath.MUL_BASE_DIGITS || ulen < libbcmath.MUL_SMALL_DIGITS || vlen < libbcmath.MUL_SMALL_DIGITS) {
+        return libbcmath._bc_simp_mul(u, ulen, v, vlen, full_scale);
     }
 
     // Calculate n -- the u and v split point in digits.
-    n = Math.floor((libbcmath.MAX(ulen, vlen)+1) / 2);
+    n = Math.floor((libbcmath.MAX(ulen, vlen) + 1) / 2);
 
     // Split u and v.
     if (ulen < n) {
         u1 = libbcmath.bc_init_num(); //u1 = bc_copy_num (BCG(_zero_));
-        u0 = libbcmath.new_sub_num(ulen,0, u.n_value);
+        u0 = libbcmath.new_sub_num(ulen, 0, u.n_value);
     } else {
-        u1 = libbcmath.new_sub_num(ulen-n, 0, u.n_value);
-        u0 = libbcmath.new_sub_num(n, 0, u.n_value+ulen-n);
+        u1 = libbcmath.new_sub_num(ulen - n, 0, u.n_value);
+        u0 = libbcmath.new_sub_num(n, 0, u.n_value + ulen - n);
     }
     if (vlen < n) {
         v1 = libbcmath.bc_init_num(); //bc_copy_num (BCG(_zero_));
-        v0 = libbcmath.new_sub_num(vlen,0, v.n_value);
+        v0 = libbcmath.new_sub_num(vlen, 0, v.n_value);
     } else {
-        v1 = libbcmath.new_sub_num(vlen-n, 0, v.n_value);
-        v0 = libbcmath.new_sub_num(n, 0, v.n_value+vlen-n);
+        v1 = libbcmath.new_sub_num(vlen - n, 0, v.n_value);
+        v0 = libbcmath.new_sub_num(n, 0, v.n_value + vlen - n);
     }
     libbcmath._bc_rm_leading_zeros(u1);
     libbcmath._bc_rm_leading_zeros(u0);
@@ -1156,7 +1156,7 @@ libbcmath._bc_rec_mul = function (u, ulen, v, vlen, full_scale) {
     d1 = libbcmath.bc_sub(u1, u0, 0);
     d1len = d1.n_len;
 
-    d2 = libbcmath.bc_sub (v0, v1, 0);
+    d2 = libbcmath.bc_sub(v0, v1, 0);
     d2len = d2.n_len;
 
     // Do recursive multiplies and shifted adds.
@@ -1164,13 +1164,13 @@ libbcmath._bc_rec_mul = function (u, ulen, v, vlen, full_scale) {
         m1 = libbcmath.bc_init_num(); //bc_copy_num (BCG(_zero_));
     } else {
         //m1 = libbcmath.bc_init_num(); //allow pass-by-ref
-        m1 = libbcmath._bc_rec_mul (u1, u1.n_len, v1, v1.n_len, 0);
+        m1 = libbcmath._bc_rec_mul(u1, u1.n_len, v1, v1.n_len, 0);
     }
     if (libbcmath.bc_is_zero(d1) || libbcmath.bc_is_zero(d2)) {
         m2 = libbcmath.bc_init_num(); //bc_copy_num (BCG(_zero_));
     } else {
         //m2 = libbcmath.bc_init_num(); //allow pass-by-ref
-        m2 = libbcmath._bc_rec_mul (d1, d1len, d2, d2len, 0);
+        m2 = libbcmath._bc_rec_mul(d1, d1len, d2, d2len, 0);
     }
 
     if (libbcmath.bc_is_zero(u0) || libbcmath.bc_is_zero(v0)) {
@@ -1181,11 +1181,11 @@ libbcmath._bc_rec_mul = function (u, ulen, v, vlen, full_scale) {
     }
 
     // Initialize product
-    prodlen = ulen+vlen+1;
+    prodlen = ulen + vlen + 1;
     prod = libbcmath.bc_new_num(prodlen, 0);
 
     if (!m1zero) {
-        libbcmath._bc_shift_addsub(prod, m1, 2*n, 0);
+        libbcmath._bc_shift_addsub(prod, m1, 2 * n, 0);
         libbcmath._bc_shift_addsub(prod, m1, n, 0);
     }
     libbcmath._bc_shift_addsub(prod, m3, n, 0);
@@ -1207,11 +1207,11 @@ libbcmath._bc_rec_mul = function (u, ulen, v, vlen, full_scale) {
 /* Here is the full subtract routine that takes care of negative numbers.
    N2 is subtracted from N1 and the result placed in RESULT.  SCALE_MIN
    is the minimum scale for the result. */
-libbcmath.bc_sub = function(n1, n2, scale_min) {
+libbcmath.bc_sub = function (n1, n2, scale_min) {
     var diff; // bc_num
     var cmp_res, res_scale; //int
     if (n1.n_sign != n2.n_sign) {
-        diff = libbcmath._bc_do_add (n1, n2, scale_min);
+        diff = libbcmath._bc_do_add(n1, n2, scale_min);
         diff.n_sign = n1.n_sign;
     } else {
         /* subtraction must be done. */
@@ -1223,13 +1223,13 @@ libbcmath.bc_sub = function(n1, n2, scale_min) {
                 diff = libbcmath._bc_do_sub(n2, n1, scale_min);
                 diff.n_sign = (n2.n_sign == libbcmath.PLUS ? libbcmath.MINUS : libbcmath.PLUS);
                 break;
-            case  0:
+            case 0:
                 /* They are equal! return zero! */
                 res_scale = libbcmath.MAX(scale_min, libbcmath.MAX(n1.n_scale, n2.n_scale));
                 diff = libbcmath.bc_new_num(1, res_scale);
-                libbcmath.memset(diff.n_value, 0, 0, res_scale+1);
+                libbcmath.memset(diff.n_value, 0, 0, res_scale + 1);
                 break;
-            case  1:
+            case 1:
                 /* n2 is less than n1, subtract n2 from n1. */
                 diff = libbcmath._bc_do_sub(n1, n2, scale_min);
                 diff.n_sign = n1.n_sign;
@@ -1262,26 +1262,26 @@ libbcmath.bc_sub = function(n1, n2, scale_min) {
 function bcadd(left_operand, right_operand, scale) {
     var first, second, result;
 
-    if (typeof(scale) == 'undefined') {
+    if (typeof (scale) == 'undefined') {
         scale = libbcmath.scale;
     }
-    scale   = ((scale < 0) ? 0 : scale);
-    
+    scale = ((scale < 0) ? 0 : scale);
+
     // create objects
-    first   = libbcmath.bc_init_num();
-    second  = libbcmath.bc_init_num();
-    result  = libbcmath.bc_init_num();
+    first = libbcmath.bc_init_num();
+    second = libbcmath.bc_init_num();
+    result = libbcmath.bc_init_num();
 
-    first   = libbcmath.php_str2num(left_operand.toString());
-    second  = libbcmath.php_str2num(right_operand.toString());
+    first = libbcmath.php_str2num(left_operand.toString());
+    second = libbcmath.php_str2num(right_operand.toString());
 
 
-    result  = libbcmath.bc_add(first, second, scale);
+    result = libbcmath.bc_add(first, second, scale);
 
     if (result.n_scale > scale) {
         result.n_scale = scale;
     }
-    
+
     return result.toString();
 }
 
@@ -1297,20 +1297,20 @@ function bcadd(left_operand, right_operand, scale) {
 function bcsub(left_operand, right_operand, scale) {
     var first, second, result;
 
-    if (typeof(scale) == 'undefined') {
+    if (typeof (scale) == 'undefined') {
         scale = libbcmath.scale;
     }
-    scale   = ((scale < 0) ? 0 : scale);
+    scale = ((scale < 0) ? 0 : scale);
 
     // create objects
-    first   = libbcmath.bc_init_num();
-    second  = libbcmath.bc_init_num();
-    result  = libbcmath.bc_init_num();
+    first = libbcmath.bc_init_num();
+    second = libbcmath.bc_init_num();
+    result = libbcmath.bc_init_num();
 
-    first   = libbcmath.php_str2num(left_operand.toString());
-    second  = libbcmath.php_str2num(right_operand.toString());
+    first = libbcmath.php_str2num(left_operand.toString());
+    second = libbcmath.php_str2num(right_operand.toString());
 
-    result  = libbcmath.bc_sub(first, second, scale);
+    result = libbcmath.bc_sub(first, second, scale);
 
     if (result.n_scale > scale) {
         result.n_scale = scale;
@@ -1330,17 +1330,17 @@ function bcsub(left_operand, right_operand, scale) {
  */
 function bccomp(left_operand, right_operand, scale) {
     var first, second; //bc_num
-    
-    if (typeof(scale) == 'undefined') {
+
+    if (typeof (scale) == 'undefined') {
         scale = libbcmath.scale;
     }
-    scale   = ((scale < 0) ? 0 : scale);
-    
-    first   = libbcmath.bc_init_num();
-    second  = libbcmath.bc_init_num();
-    
-    first   = libbcmath.bc_str2num(left_operand.toString(), scale);     // note bc_ not php_str2num
-    second  = libbcmath.bc_str2num(right_operand.toString(), scale);    // note bc_ not php_str2num
+    scale = ((scale < 0) ? 0 : scale);
+
+    first = libbcmath.bc_init_num();
+    second = libbcmath.bc_init_num();
+
+    first = libbcmath.bc_str2num(left_operand.toString(), scale);     // note bc_ not php_str2num
+    second = libbcmath.bc_str2num(right_operand.toString(), scale);    // note bc_ not php_str2num
 
     return libbcmath.bc_compare(first, second, scale);
 }
@@ -1374,20 +1374,20 @@ function bcscale(scale) {
 function bcdiv(left_operand, right_operand, scale) {
     var first, second, result;
 
-    if (typeof(scale) == 'undefined') {
+    if (typeof (scale) == 'undefined') {
         scale = libbcmath.scale;
     }
-    scale   = ((scale < 0) ? 0 : scale);
+    scale = ((scale < 0) ? 0 : scale);
 
     // create objects
-    first   = libbcmath.bc_init_num();
-    second  = libbcmath.bc_init_num();
-    result  = libbcmath.bc_init_num();
+    first = libbcmath.bc_init_num();
+    second = libbcmath.bc_init_num();
+    result = libbcmath.bc_init_num();
 
-    first   = libbcmath.php_str2num(left_operand.toString());
-    second  = libbcmath.php_str2num(right_operand.toString());
-    
-    result  = libbcmath.bc_divide(first, second, scale);
+    first = libbcmath.php_str2num(left_operand.toString());
+    second = libbcmath.php_str2num(right_operand.toString());
+
+    result = libbcmath.bc_divide(first, second, scale);
     if (result === -1) {
         // error
         throw new Error(11, "(BC) Division by zero");
@@ -1409,21 +1409,21 @@ function bcdiv(left_operand, right_operand, scale) {
 function bcmul(left_operand, right_operand, scale) {
     var first, second, result;
 
-    if (typeof(scale) == 'undefined') {
+    if (typeof (scale) == 'undefined') {
         scale = libbcmath.scale;
     }
-    scale   = ((scale < 0) ? 0 : scale);
+    scale = ((scale < 0) ? 0 : scale);
 
     // create objects
-    first   = libbcmath.bc_init_num();
-    second  = libbcmath.bc_init_num();
-    result  = libbcmath.bc_init_num();
+    first = libbcmath.bc_init_num();
+    second = libbcmath.bc_init_num();
+    result = libbcmath.bc_init_num();
 
-    first   = libbcmath.php_str2num(left_operand.toString());
-    second  = libbcmath.php_str2num(right_operand.toString());
+    first = libbcmath.php_str2num(left_operand.toString());
+    second = libbcmath.php_str2num(right_operand.toString());
 
-    result  = libbcmath.bc_multiply(first, second, scale);
-    
+    result = libbcmath.bc_multiply(first, second, scale);
+
     if (result.n_scale > scale) {
         result.n_scale = scale;
     }
@@ -1442,12 +1442,12 @@ function bcmul(left_operand, right_operand, scale) {
  */
 function bcround(val, precision) {
     var x;
-    x = '0.' + Array(precision+1).join('0') + '5';
+    x = '0.' + Array(precision + 1).join('0') + '5';
     if (val.toString().substring(0, 1) == '-') {
         x = '-' + x;
     }
     r = bcadd(val, x, precision);
-    
+
     return r;
 }
 /*
@@ -1457,7 +1457,7 @@ function bcround(val, precision) {
     // create number
     temp  = libbcmath.bc_init_num();
     temp  = libbcmath.php_str2num(val.toString());
-    
+
     // check if any rounding needs
     if (precision >= temp.n_scale) {
         // nothing to round, just add the zeros.
@@ -1511,31 +1511,31 @@ function bcround(val, precision) {
  *          x.toString(); // returns 10.75
  */
 function DecimalNumber(num, precision) {
-    if (typeof(precision) == 'undefined') {
+    if (typeof (precision) == 'undefined') {
         precision = 0;
     }
-    
-    if (typeof(num) == 'undefined') {
+
+    if (typeof (num) == 'undefined') {
         num = '0';
     }
 
-    this.getPi = function(precision) {
+    this.getPi = function (precision) {
         if (precision > 37) {
             alert('Note: this approximation is not accurate above 37 decimal places');
         }
         return bcdiv('2646693125139304345', '842468587426513207', precision);
     };
 
-    this.toString = function() {
+    this.toString = function () {
         return this._result;
     };
-    
-    this.floor = function(precision) {
+
+    this.floor = function (precision) {
         this._result = bcadd(this._result, '0', 0);
         return this;
     };
-    
-    this.ceil = function(precision) {
+
+    this.ceil = function (precision) {
         if (this._result.substr(0, 1) == '-') {
             this._result = bcround(bcadd(this._result, '-0.5', 1), 0);
         } else {
@@ -1543,84 +1543,84 @@ function DecimalNumber(num, precision) {
         }
         return this;
     };
-    
-    this.toFixed = function(precision) {
+
+    this.toFixed = function (precision) {
         return bcround(this._result, precision);
     };
 
-    this.valueOf = function() {
+    this.valueOf = function () {
         return this._result;
     };
-    
-    this.abs = function() {
+
+    this.abs = function () {
         if (this._result.substr(0, 1) == '-') {
-            this._result = this._result.substr(1, this._result.length-1);
+            this._result = this._result.substr(1, this._result.length - 1);
         };
         return this;
     };
-    
-    this.toInt = function() {
+
+    this.toInt = function () {
         return parseInt(this.toFixed(0));
     };
-    
-    this.toFloat = function() {
+
+    this.toFloat = function () {
         return parseFloat(this._result);
     };
 
-    this.add = function(operand) {
-        this._result = bcround(bcadd(this._result, this._parseNumber(operand), this._precision+2), this._precision);
+    this.add = function (operand) {
+        this._result = bcround(bcadd(this._result, this._parseNumber(operand), this._precision + 2), this._precision);
         return this;
     };
-    
-    this.sub = function(operand) {
+
+    this.sub = function (operand) {
         return this.subtract(operand);
     };
-    
-    this.subtract = function(operand) {
-        this._result = bcround(bcsub(this._result, this._parseNumber(operand), this._precision+2), this._precision);
+
+    this.subtract = function (operand) {
+        this._result = bcround(bcsub(this._result, this._parseNumber(operand), this._precision + 2), this._precision);
         return this;
     };
-    
-    this.mul = function(operand) {
+
+    this.mul = function (operand) {
         return this.multiply(operand);
     };
 
-    this.multiply = function(operand) {
-        this._result = bcround(bcmul(this._result, this._parseNumber(operand), this._precision+2), this._precision);
+    this.multiply = function (operand) {
+        this._result = bcround(bcmul(this._result, this._parseNumber(operand), this._precision + 2), this._precision);
         return this;
     };
 
-    this.div = function(operand) {
+    this.div = function (operand) {
         return this.divide(operand);
     };
-    
-    this.divide = function(operand) {
-        this._result = bcround(bcdiv(this._result, this._parseNumber(operand), this._precision+2), this._precision);
+
+    this.divide = function (operand) {
+        this._result = bcround(bcdiv(this._result, this._parseNumber(operand), this._precision + 2), this._precision);
         return this;
     };
 
-    this.round = function(precision) {
+    this.round = function (precision) {
         this._result = bcround(this._result, precision);
         return this;
     };
-    
-    this.setPrecision=function(precision) {
+
+    this.setPrecision = function (precision) {
         this._precision = precision;
         this.round(precision);
         return this;
     };
-    
-    this._parseNumber=function(num) {
+
+    this._parseNumber = function (num) {
         var tmp, r;
-        tmp = num.toString().replace(/[^0-9\-\.]/g,'');
+        tmp = num.toString().replace(/[^0-9\-\.]/g, '');
         if (tmp === '') {
             return '0';
         }
         return tmp;
     };
 
-    this.reset = function(num) {
-        if (typeof(num) == 'undefined') {
+    this.reset = function (num) {
+        if (typeof (num) == 'undefined') {
             num = 0;
         }
         this._result = bcround(num, this._precision);
@@ -1645,7 +1645,7 @@ function DecimalNumber(num, precision) {
 function TestFloatingPointProblems() {
 
     // First, lets try JavaScripts Built-in maths...
-    var x=0;
+    var x = 0;
     x += 0.1;
     x += 0.7;
     x = x * 10;
@@ -1657,27 +1657,27 @@ function TestFloatingPointProblems() {
         alert("Well, apparently your browser can't work out Floor((0.1 + 0.7) * 10).. it thinks the answer is: " + x + ", the correct answer is of course 8.");
     }
 
-    var y=new DecimalNumber(0, 1)
+    var y = new DecimalNumber(0, 1)
         .add('0.1').add('0.7')
         .multiply('10')
         .floor()
         .toString()
-    ;
+        ;
     if (y === '8') {
         alert('Howver, The DecimalNumber Library worked it out fine.. it figured out the maths as expected :)');
     } else {
         alert("Odd, apparently the DecimalNumber library can't work it out either.. must be a problem somewhere :/");
     }
 
-    
+
     // now let's test PI using a magic number...   http://qin.laya.com/tech_projects_approxpi.html
-    var browserPi=(2646693125139304345/842468587426513207).toFixed(20); // as high as it goes
+    var browserPi = (2646693125139304345 / 842468587426513207).toFixed(20); // as high as it goes
     if (browserPi == '3.14159265358979323846') {//264338327950288418
         alert('Your browser calculates PI correctly to 20dp.. well done');
     } else {
         alert('Your browser calculates PI WRONG.. it is.. ' + bcsub('3.14159265358979323846', browserPi, 20) + ' off at 20dp');
     }
-    var decNumPi=new DecimalNumber(0, 20);
+    var decNumPi = new DecimalNumber(0, 20);
     decNumPi = decNumPi.reset('2646693125139304345').divide('842468587426513207').toString(); //getPi(20);
     if (decNumPi == '3.14159265358979323846') {//264338327950288418
         alert('The DecimalNumber Library calculates PI correctly to 20dp... of course :)');
@@ -1686,7 +1686,7 @@ function TestFloatingPointProblems() {
     }
 
     // heck, lets go all out.. test at 38dp (limit of the accuracy of the 2 numbers to PI)..
-    var decNumPi=new DecimalNumber(0, 38);
+    var decNumPi = new DecimalNumber(0, 38);
     decNumPi = decNumPi.reset('2646693125139304345').divide('842468587426513207').toString(); //getPi(20);
     if (decNumPi == '3.14159265358979323846264338327950288418') {
         alert('The DecimalNumber Library calculates PI correctly to 38dp... of course :)');
@@ -1694,7 +1694,7 @@ function TestFloatingPointProblems() {
         alert('Odd, the DecimalNumber Library calculated PI WRONG.. it is..' + bcsub('3.14159265358979323846264338327950288418', decNumPi, 38) + ' off at 38dp');
     }
 
-    var decNumPi=new DecimalNumber();
+    var decNumPi = new DecimalNumber();
     decNumPi.getPi(1000000);
     decNumPi = null;
     alert('done');

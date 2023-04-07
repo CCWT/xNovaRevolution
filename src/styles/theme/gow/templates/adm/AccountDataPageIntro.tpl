@@ -8,11 +8,11 @@
 	<select name="id_u" size="20" style="width:80%;">
 		{$Userlist}
 	</select>
-	
+
 	<SCRIPT type="text/javascript">
 		var UserList = new filterlist(document.users.id_u);
 	</SCRIPT>
-	
+
 	<br><br>
 	<a href="javascript:UserList.set('^A')" title="{$bo_select_title} A">A</A>
 	<a href="javascript:UserList.set('^B')" title="{$bo_select_title} B">B</A>

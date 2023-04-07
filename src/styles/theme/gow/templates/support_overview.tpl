@@ -12,7 +12,7 @@
 			<th style="width:15%">{$status}</td>
 			<th style="width:25%">{$ticket_posted}</td>
 		</tr>
-		{foreach key=TicketID item=TicketInfo from=$TicketsList}	
+		{foreach key=TicketID item=TicketInfo from=$TicketsList}
 		<tr>
 		<td>{$TicketID}</td>
 		<td><a href="#" onclick="ShowTicket('ticket_{$TicketID}');">{$TicketInfo.subject}</a></td>

@@ -16,7 +16,7 @@
 <div class="register">
 	<div class="form-reg">
 		<form name="reg" action="?page=reg&mode=send&lang={$lang}" method="post" id="formID">
-			
+
 				<div class="left-col">
 					<ul class="login">
 
@@ -51,7 +51,7 @@
 
 				</div>
 				<div class="right-col">
-																<br><br>	
+																<br><br>
 																	{if $game_captcha}
 			<label for="captcha">{$captcha_reg}</label>
 			<label for="captcha"><a href="javascript:Recaptcha.reload()">{$captcha_reload}</a></label>
@@ -59,30 +59,30 @@
 	<div class="recaptcha_only_if_audio"><a href="javascript:Recaptcha.switch_type('image')">{$captcha_get_image}</a></div>
         	<label for="captcha"><a href="javascript:Recaptcha.showhelp()">{$captcha_help}</a></label>
 			<div id="display_captcha" style="display:none"><div id="recaptcha_image"></div><input type="text" id="recaptcha_response_field" size="30" maxlength="40" tabindex="7" name="recaptcha_response_field" class="input-text"></div>
-			{/if}																
-													
-						
+			{/if}
+
+
 <label>{$lang_reg}</label><br>
 							<select name="lang" id="lang">
             {html_options options=$AvailableLangs selected=$lang}
 			</select><br>
-									
+
 							<label for="universe">{$uni_reg}</label><br>
 							<select name="universe" id="universe">
             {html_options options=$AvailableUnis selected=$UNI}
 			</select>
-					
-			
-							
+
+
+
 					<p class="agb-text"><br>
-							
+
 								<input class="agb-check" name="rgt" type="checkbox" />	{$accept_terms_and_conditions}</p>
-							
+
 
 					<input class="submit" type="submit" value="{$send}" />
 
 				</div>
-			
+
 		</form>
 	</div>
 </div>
