@@ -1,5 +1,7 @@
 on: push
 name: Publish Website
+paths-ignore:
+      - '.gitignore'
 jobs:
   web-deploy:
     name: Deploy Website Every Commit
@@ -7,7 +9,7 @@ jobs:
     steps:
     - name: Get Latest Code
       uses: actions/checkout@v3
-    
+
     - name: Sync Files
       uses: SamKirkland/web-deploy@v1
       with:
