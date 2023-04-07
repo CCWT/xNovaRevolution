@@ -12,7 +12,7 @@ _  \_/ |\ | /��\ \  / /\    |��) |_� \  / /��\ |  |   |��|�`
 * @license http://www.gnu.org/licenses/gpl.html GNU GPLv3 License
 * @version 1.3 (2011-01-21)
 * @link http://code.google.com/p/2moons/
-* Please do not remove the credits
+* Please  do not remove the credits
 */
 
 if (!function_exists('spl_autoload_register'))
