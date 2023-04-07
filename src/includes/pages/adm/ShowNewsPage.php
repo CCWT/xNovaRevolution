@@ -34,15 +34,27 @@ function ShowNewsPage()
 	}
 
 	$query = $db->query("SELECT * FROM " . NEWS . " ORDER BY id ASC");
-
-	while ($u = $db->fetch_array($query)) {
+	$u = $db->fetch_array($query);
+	if (is_null($u)) {
 		$NewsList[] = array(
-			'id' => $u['id'],
-			'title' => $u['title'],
-			'date' => date(TDFORMAT, $u['date']),
-			'user' => $u['user'],
-			'confirm' => sprintf($LNG['nws_confirm'], $u['title']),
+			'id' => 0,
+			'title' => 'No News',
+			'date' => date(TDFORMAT, date('Y')),
+			'user' => 'System',
+			'confirm' => sprintf($LNG['nws_confirm'], 'Nix'),
 		);
+	} else {
+		while ($u) {
+			$NewsList[] = array(
+				'id' => $u['id'],
+				'title' => $u['title'],
+				'date' => date(TDFORMAT, $u['date']),
+				'user' => $u['user'],
+				'confirm' => sprintf($LNG['nws_confirm'], $u['title']),
+			);
+		}
+
+
 	}
 
 	$template = new template();
