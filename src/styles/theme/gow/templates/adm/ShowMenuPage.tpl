@@ -7,7 +7,7 @@
 		{if allowedTo('ShowInformationPage')}<li><a href="?page=infos" target="Hauptframe">{$mu_game_info}</a></li>{/if}
 		{if allowedTo('ShowConfigPage')}<li><a href="?page=config" target="Hauptframe">{$mu_settings}</a></li>{/if}
 		{if allowedTo('ShowTeamspeakPage')}<li><a href="?page=teamspeak" target="Hauptframe">{$mu_ts_options}</a></li>{/if}
-		{if allowedTo('ShowFacebookPage')}<li><a href="?page=facebook" target="Hauptframe">{$mu_fb_options}</a></li>{/if}
+		{* {if allowedTo('ShowFacebookPage')}<li><a href="?page=facebook" target="Hauptframe">{$mu_fb_options}</a></li>{/if} *}
 		{if allowedTo('ShowModulePage')}<li><a href="?page=module" target="Hauptframe">{$mu_module}</a></li>{/if}
 		{if allowedTo('ShowStatsPage')}<li><a href="?page=statsconf" target="Hauptframe">{$mu_stats_options}</a></li>{/if}
 		<li><a href="javascript:void(0);"><span style="color:lime">{$mu_users_settings}</span></a></li>

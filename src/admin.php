@@ -56,10 +56,12 @@ switch ($page) {
 		include_once(ROOT_PATH . 'includes/pages/adm/ShowTeamspeakPage.php');
 		ShowTeamspeakPage();
 		break;
+	/*
 	case 'facebook':
-		include_once(ROOT_PATH . 'includes/pages/adm/ShowFacebookPage.php');
-		ShowFacebookPage();
-		break;
+	include_once(ROOT_PATH . 'includes/pages/adm/ShowFacebookPage.php');
+	ShowFacebookPage();
+	break;
+	*/
 	case 'module':
 		include_once(ROOT_PATH . 'includes/pages/adm/ShowModulePage.php');
 		ShowModulePage();
